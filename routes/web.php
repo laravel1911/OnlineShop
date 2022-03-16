@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Livewire\CategoryComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,7 @@ Route::get('/category/edit/{number}', [CategoryController::class, 'edit'])->name
 Route::put('/category/update/{number}', [CategoryController::class, 'update'])->name('category.update');
 Route::delete('/category/destroy/{number}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
+Route::get('/test', CategoryComponent::class);
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
