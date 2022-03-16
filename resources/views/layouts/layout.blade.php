@@ -68,8 +68,8 @@
                                 <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">English</a></li>
-                                    <li><a href="#">French</a></li>
-                                    <li><a href="#">German</a></li>
+                                    <li><a href="#">Russian</a></li>
+                                    <li><a href="#">Uzbek</a></li>
                                 </ul>
                             </li>
                         </ul>
