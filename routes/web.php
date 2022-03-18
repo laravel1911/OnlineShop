@@ -7,7 +7,8 @@ use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\ShopComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
-
+use App\Http\Livewire\Checkout;
+use App\Http\Livewire\HomeComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +33,12 @@ Route::get('/category/edit/{number}', [CategoryController::class, 'edit'])->name
 Route::put('/category/update/{number}', [CategoryController::class, 'update'])->name('category.update');
 Route::delete('/category/destroy/{number}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
-Route::get('/test', CategoryComponent::class)->name('home');
-Route::get('/shop', ShopComponent::class);
-Route::get('/cart', CartComponent::class);
+// Route::get('/test', CategoryComponent::class)->name('home');
+Route::get('/shop', ShopComponent::class)->name('shop');
+Route::get('/cart', CartComponent::class)->name('cart');
+Route::get('/home', HomeComponent::class)->name('home');
+Route::get('/checkout', Checkout::class)->name('checkout');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
