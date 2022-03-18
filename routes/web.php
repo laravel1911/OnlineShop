@@ -3,6 +3,8 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Livewire\CategoryComponent;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +33,7 @@ Route::get('/test', CategoryComponent::class);
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/index', [UserController::class, 'index'])->name('user_index');
+Route::get('/show', [UserController::class, 'show'])->name('user_show');
+Route::get('/changestatus', [UserController::class, 'index'])->name('user_changestatus');
