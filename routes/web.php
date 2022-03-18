@@ -6,6 +6,8 @@ use App\Http\Livewire\CartComponent;
 use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\ShopComponent;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +41,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::resource('products' , ProductController::class);
+Route::get('/index', [UserController::class, 'index'])->name('user_index');
+Route::get('/show', [UserController::class, 'show'])->name('user_show');
+Route::get('/changestatus', [UserController::class, 'index'])->name('user_changestatus');
