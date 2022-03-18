@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Livewire\CartComponent;
 use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\ShopComponent;
@@ -30,9 +31,11 @@ Route::put('/category/update/{number}', [CategoryController::class, 'update'])->
 Route::delete('/category/destroy/{number}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
 Route::get('/test', CategoryComponent::class)->name('home');
-Route::get('/ramazon', ShopComponent::class);
+Route::get('/shop', ShopComponent::class);
 Route::get('/cart', CartComponent::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::resource('products' , ProductController::class);
