@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 use App\Http\Livewire\Checkout;
 use App\Http\Livewire\HomeComponent;
+use App\Http\Livewire\DetailsComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::get('/shop', ShopComponent::class)->name('shop');
 Route::get('/cart', CartComponent::class)->name('cart');
 Route::get('/home', HomeComponent::class)->name('home');
 Route::get('/checkout', Checkout::class)->name('checkout');
+Route::get('/details', DetailsComponent::class)->name('details');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
