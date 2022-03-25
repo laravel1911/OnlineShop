@@ -22,7 +22,7 @@
                             <div class="product-upper">
                                 <img src="{{asset($product->image)}}" alt="bu yerda rasm bor">
                             </div>
-                            <h2><a href="">{{$product->name}}</a></h2>
+                            <h2><a href="{{route('details', ['slug' => $product->slug])}}">{{$product->name}}</a></h2>
                             <div class="product-carousel-price">
                                 <ins>${{$product->price}}</ins>
                                 {{-- <del>$999.00</del> --}}
