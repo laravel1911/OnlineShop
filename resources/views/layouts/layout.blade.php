@@ -97,7 +97,6 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="{{route('home')}}">Home</a></li>
                         <li><a href="{{route('shop')}}">Shop page</a></li>
-                        <li><a href="single-product.html">Details</a></li>
                         <li><a href="{{route('cart')}}">Cart</a></li>
                         <li><a href="{{route('checkout')}}">Checkout</a></li>
                         <li><a href="#">Category</a></li>
@@ -105,6 +104,7 @@
                         <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
+                @livewire('search-component')
             </div>
         </div>
     </div> <!-- End mainmenu area -->
