@@ -10,6 +10,23 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-sidebar">
+                    <h2 class="sidebar-title">Categories</h2>
+                        <div class="thubmnail-recent">
+                        @foreach ($categories as $category)
+                            <input
+                                type="radio"
+                                wire:model="category_slug"
+                                value="{{$category->slug}}">
+                                {{$category->name}} <br>
+                        @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <div class="single-product-area">
