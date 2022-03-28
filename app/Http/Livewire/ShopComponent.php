@@ -20,7 +20,7 @@ class ShopComponent extends Component
         if($this->search){
             $products = $products->where('name', 'like', '%'.$this->search.'%');
         }
-        $products = $products->limit(12)->get();
+        $products = $products->inRandomOrder()->limit(12)->get();
         return view('livewire.shop-component', ['products' => $products])->layout('layouts.layout');
     }
 }
