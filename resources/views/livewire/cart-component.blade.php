@@ -17,54 +17,30 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="single-sidebar">
-                        <h2 class="sidebar-title">Search Products</h2>
-                        <form action="#">
-                            <input type="text" placeholder="Search products...">
-                            <input type="submit" value="Search">
-                        </form>
-                    </div>
-
-                    <div class="single-sidebar">
                         <h2 class="sidebar-title">Products</h2>
-                        <div class="thubmnail-recent">
-                            <img src={{asset("assets/img/product-thumb-1.jpg")}} class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src={{asset("assets/img/product-thumb-1.jpg")}} class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src={{asset("assets/img/product-thumb-1.jpg")}} class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src={{asset("assets/img/product-thumb-1.jpg")}} class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>
-                        </div>
+                        @foreach ($product as $item)
+
+                            <div class="thubmnail-recent">
+                                <a href="{{route('details', ['slug' => $item->slug])}}">
+                                    <img src={{asset($item->image)}} class="recent-thumb" alt="">
+                                    <h4>{{$item->name}}</h4>
+                                <div class="product-sidebar-price">
+                                    <ins>${{$item->price}}</ins>
+                                </div>
+                            </div></a>
+                        @endforeach
+
                     </div>
 
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Recent Posts</h2>
-                        <ul>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                        </ul>
+                        @foreach ($recent_products as $item)
+                            <ul>
+                                <li>
+                                    <a href="{{route('details', ['slug' => $item->slug])}}">{{$item->name}}</a>
+                                </li>
+                            </ul>
+                        @endforeach
                     </div>
                 </div>
 
@@ -135,23 +111,17 @@
                                 <h2>You may be interested in...</h2>
                                 <ul class="products">
                                     <li class="product">
-                                        <a href="single-product.html">
-                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src={{asset("assets/img/product-2.jpg")}}>
-                                            <h3>Ship Your Idea</h3>
-                                            <span class="price"><span class="amount">£20.00</span></span>
+                                        @foreach ($product2 as $item)
+
+                                        <a href="{{route('details', ['slug' => $item->slug])}}">
+                                            <img width="300" height="300" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src={{asset($item->image)}}>
+                                            <h3>{{$item->name}}</h3>
+                                            <span class="price"><span class="amount">£{{$item->price}}</span></span>
                                         </a>
 
                                         <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
-                                    </li>
+                                        @endforeach
 
-                                    <li class="product">
-                                        <a href="single-product.html">
-                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src={{asset("assets/img/product-4.jpg")}}>
-                                            <h3>Ship Your Idea</h3>
-                                            <span class="price"><span class="amount">£20.00</span></span>
-                                        </a>
-
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
                                     </li>
                                 </ul>
                             </div>

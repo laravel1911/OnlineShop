@@ -10,6 +10,23 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-sidebar">
+                    <h2 class="sidebar-title">Categories</h2>
+                        <div class="thubmnail-recent">
+                        @foreach ($categories as $category)
+                            <input
+                                type="radio"
+                                wire:model="category_slug"
+                                value="{{$category->slug}}">
+                                {{$category->name}} <br>
+                        @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <div class="single-product-area">
@@ -20,14 +37,14 @@
                     <div class="col-md-3 col-sm-6">
                         <div class="single-shop-product">
                             <div class="product-upper">
-                                <img src="{{asset($product->image)}}" alt="bu yerda rasm bor">
+                                <a href="{{route('details', ['slug' => $product->slug])}}"><img src="{{asset($product->image)}}" alt="bu yerda rasm bor"></a>
                             </div>
                             <h2><a href="{{route('details', ['slug' => $product->slug])}}">{{$product->name}}</a></h2>
                             <div class="product-carousel-price">
-                                <ins>${{$product->price}}</ins>
-                                {{-- <del>$999.00</del> --}}
+                                <a href="{{route('details', ['slug' => $product->slug])}}">
+                                    <ins>${{$product->price}}</ins>
+                                </a>
                             </div>
-
                             <div class="product-option-shop">
                                 <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
                             </div>

@@ -17,54 +17,36 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="single-sidebar">
-                        <h2 class="sidebar-title">Search Products</h2>
-                        <form action="">
-                            <input type="text" placeholder="Search products...">
-                            <input type="submit" value="Search">
-                        </form>
-                    </div>
-
-                    <div class="single-sidebar">
                         <h2 class="sidebar-title">Products</h2>
-                        <div class="thubmnail-recent">
-                            <img src="{{asset('assets/img/product-thumb-1.jpg')}}" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$100.00</del>
+                        @foreach ($products as $item)
+                            <div class="thubmnail-recent">
+                                <a href="{{route('details', ['slug' => $item->slug])}}">
+                                    <img src="{{asset($item->image)}}" class="recent-thumb" alt="">
+                                </a>
+
+                                <h2>
+                                    <a href="{{route('details', ['slug' => $item->slug])}}">{{$item->name}}</a>
+                                </h2>
+                                <div class="product-sidebar-price">
+                                    <a href="{{route('details', ['slug' => $item->slug])}}">
+                                        <ins>${{$item->price}}</ins>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="{{asset('assets/img/product-thumb-1.jpg')}}" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$100.00</del>
-                            </div>
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="{{asset('assets/img/product-thumb-1.jpg')}}" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$100.00</del>
-                            </div>
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="{{asset('img/product-thumb-1.jpg')}}" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$100.00</del>
-                            </div>
-                        </div>
-                    </div>
+
+                        @endforeach
+
 
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Recent Posts</h2>
-                        <ul>
-                            <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
-                            <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
-                            <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
-                            <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
-                            <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
-                        </ul>
+                        @foreach ($recent_products as $item)
+
+                            <ul>
+                                <li>
+                                    <a href="{{route('details', ['slug' => $item->slug])}}">{{$item->name}}</a>
+                                </li>
+                            </ul>
+                        @endforeach
                     </div>
                 </div>
 

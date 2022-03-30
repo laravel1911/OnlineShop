@@ -21,7 +21,13 @@ class DetailsComponent extends Component
         $related_products = Product::where('category_id', $product->category_id)->inRandomOrder()->limit(6)->get();
         $random_products = Product::where('category_id', '!=', $product->category_id)->inRandomOrder()->limit(4)->get();
         $recent_products = Product::inRandomOrder()->limit(5)->get();
-        
-        return view('livewire.details-component', ['product' => $product])->layout('layouts.layout');
+
+        return view('livewire.details-component',
+        [
+            'product' => $product,
+            'random_products' => $random_products,
+            'recent_product' => $recent_products,
+            'related_products' => $related_products
+        ])->layout('layouts.layout');
     }
 }
