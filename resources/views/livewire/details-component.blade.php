@@ -11,6 +11,13 @@
         </div>
     </div>
 
+@if(session()->has('message'))
+    <div class="container" style="margin: 10px auto">
+        <div class="alert alert-success" >
+        <strong>Muvaffaqiyatli </strong> {{ session('message') }}
+        </div>
+    </div>
+@endif
 
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
@@ -89,11 +96,11 @@
                                         <ins>${{$product->price}}</ins>
                                     </div>
 
-                                    <form action="" class="cart">
+                                    <form class="cart">
                                         <div class="quantity">
-                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                            <input type="number" wire:model="quantity" size="4" class="input-text qty text" title="Qty" value="1" min="1" step="1">
                                         </div>
-                                        <button class="add_to_cart_button" type="submit">Add to cart</button>
+                                        <button class="add_to_cart_button" wire:click.prevent="addToCart({{$product->id}})" >Add to cart</button>
                                     </form>
 
                                     <div class="product-inner-category">
