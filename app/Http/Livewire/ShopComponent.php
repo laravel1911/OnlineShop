@@ -10,11 +10,13 @@ class ShopComponent extends Component
 {
     public $search;
     public $category_slug; // model
+    public $max;
 
     public function mount()
     {
         $this->search = request()->get('search', null);
         $this->category_slug = null;
+        $this->max = null;
     }
 
     public function render()
@@ -27,8 +29,13 @@ class ShopComponent extends Component
             $category = Category::where('slug', $this->category_slug)->first();
             $products = $products->where('category_id', $category->id);
         }
+        if($this->max){
+            $products = $products->where('price', '<=', $this->max);
+        }
         $products = $products->inRandomOrder()->limit(12)->get();
         $categories = Category::get();
+
+
         return view('livewire.shop-component', ['products' => $products, 'categories' => $categories])->layout('layouts.layout');
     }
 }

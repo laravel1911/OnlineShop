@@ -27,6 +27,24 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-sidebar">
+                    <h2 class="sidebar-title">Price</h2>
+                        <div class="thubmnail-recent">
+
+                            <input
+                                type="text"
+                                wire:model="max"
+                                value="{{ $max }}">
+                                MinPrice <br>
+
+                        <input type="submit" value="Submit">
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <div class="single-product-area">
