@@ -2,15 +2,19 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use Livewire\Component;
+use App\Traits\MyTrait;
 
 class ShopComponent extends Component
 {
+    use MyTrait;
     public $search;
     public $category_slug; // model
     public $max;
+    public $quantity;
     public $min;
 
     public function mount()
@@ -19,6 +23,7 @@ class ShopComponent extends Component
         $this->category_slug = null;
         $this->max = null;
         $this->min = null;
+        $this->quantity = 1;
     }
 
     public function render()
@@ -35,12 +40,17 @@ class ShopComponent extends Component
             $products = $products->where('price', '<=', $this->max);
         }
         if($this->min){
-            $products = $products->where('price', '=>', $this->min);
+            $products = $products->where('price', '>=', $this->min);
         }
         $products = $products->inRandomOrder()->limit(12)->get();
         $categories = Category::get();
 
 
         return view('livewire.shop-component', ['products' => $products, 'categories' => $categories])->layout('layouts.layout');
+    }
+
+    public function addToCart($product_id)
+    {
+        $this->actionCart($product_id);
     }
 }

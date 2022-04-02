@@ -10,6 +10,13 @@
             </div>
         </div>
     </div>
+    @if(session()->has('message'))
+    <div class="container" style="margin: 10px auto">
+        <div class="alert alert-success" >
+        <strong>Muvaffaqiyatli </strong> {{ session('message') }}
+        </div>
+    </div>
+@endif
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -67,9 +74,9 @@
                                     <ins>${{$product->price}}</ins>
                                 </a>
                             </div>
-                            <div class="product-option-shop">
-                                <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                            </div>
+                            <form class="cart">
+                                <button class="add_to_cart_button" wire:click.prevent="addToCart({{$product->id}})" >Add to cart</button>
+                            </form>
                         </div>
                     </div>
                 @endforeach

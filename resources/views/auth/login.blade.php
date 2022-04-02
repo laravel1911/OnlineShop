@@ -30,6 +30,9 @@
                     <x-jet-checkbox id="remember_me" name="remember" />
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
+                <label for="">
+                    <br><a href="{{route('register')}}" >Registratsiyadan o'tish</a>
+                </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
