@@ -11,12 +11,14 @@ class ShopComponent extends Component
     public $search;
     public $category_slug; // model
     public $max;
+    public $min;
 
     public function mount()
     {
         $this->search = request()->get('search', null);
         $this->category_slug = null;
         $this->max = null;
+        $this->min = null;
     }
 
     public function render()
@@ -31,6 +33,9 @@ class ShopComponent extends Component
         }
         if($this->max){
             $products = $products->where('price', '<=', $this->max);
+        }
+        if($this->min){
+            $products = $products->where('price', '=>', $this->min);
         }
         $products = $products->inRandomOrder()->limit(12)->get();
         $categories = Category::get();

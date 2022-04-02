@@ -39,8 +39,12 @@
                                 wire:model="max"
                                 value="{{ $max }}">
                                 MinPrice <br>
-
-                        <input type="submit" value="Submit">
+                            <input
+                                type="text"
+                                wire:model="min"
+                                value="{{ $min }}">
+                                MaxPrice <br>
+                            <input type ="submit" value="Submit">
                 </div>
             </div>
         </div>
