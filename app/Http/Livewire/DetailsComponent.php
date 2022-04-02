@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\{Product, Cart};
+use App\Models\{Product, Cart, Wishlist};
 use Livewire\Component;
+use App\Traits\MyTrait;
 
 class DetailsComponent extends Component
 {
+    use MyTrait;
     public $slug; // 1. property, 2. model
     // public $model;
     public $quantity;
@@ -20,6 +22,7 @@ class DetailsComponent extends Component
     public function render()
     {
         $product = Product::with('category')->where('slug', $this->slug)->first(); // slug =>> id
+        $wishlist = Wishlist::where('user_id', auth()->id())->where('product_id', $product->id)->first();
         $related_products = Product::where('category_id', $product->category_id)->inRandomOrder()->limit(6)->get();
         $random_products = Product::where('category_id', '!=', $product->category_id)->inRandomOrder()->limit(4)->get();
         $recent_products = Product::inRandomOrder()->limit(5)->get();
@@ -29,32 +32,30 @@ class DetailsComponent extends Component
             'product' => $product,
             'random_products' => $random_products,
             'recent_product' => $recent_products,
-            'related_products' => $related_products
+            'related_products' => $related_products,
+            'wishlist' => $wishlist
         ])->layout('layouts.layout');
     }
-
+      // DRY don't repeat yourself
     public function addToCart($product_id)
     {
-        $product = Product::where('id', $product_id)->first();
+        $this->actionCart($product_id);
+    }
+
+    public function addWishlist($product_id)
+    {
         if(auth()->check()){
-            $cart = Cart::where('user_id', auth()->id())->where('product_id', $product_id)->first();
-            if($cart){
-                $cart->update([
-                    'quantity' => $cart->quantity + $this->quantity,
-                    'price' => ($cart->quantity + $this->quantity) * $product->price
-                ]);
+            $wishlist = Wishlist::where('user_id', auth()->id())->where('product_id', $product_id)->first();
+            if($wishlist){
+                return $wishlist->delete();
             } else{
-                $cart = Cart::create([
+                return Wishlist::create([
                     'user_id' => auth()->id(),
-                    'product_id' => $product_id,
-                    'quantity' => $this->quantity,
-                    'price' => $product->price * $this->quantity
+                    'product_id' => $product_id
                 ]);
             }
-            session()->flash('message', 'Mahsulot savatga muvaffaqiyatli qo\'shildi');
-            return $cart;
-        } else{
+
+        } else
             return redirect()->route('login');
-        }
     }
 }

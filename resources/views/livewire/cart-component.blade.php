@@ -60,35 +60,43 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    @if($cart && $cart->count() > 0)
+                                        @foreach($cart as $item)
                                         <tr class="cart_item">
                                             <td class="product-remove">
-                                                <a title="Remove this item" class="fa fa-trash" href="#"></a>
+                                                <a title="Remove this item" class="fa fa-trash" href="" wire:click.prevent="delete({{$item->id}})"></a>
                                             </td>
 
                                             <td class="product-thumbnail">
-                                                <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src={{asset("assets/img/product-thumb-2.jpg")}}></a>
+                                                <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src={{asset($item->product->image)}}></a>
                                             </td>
 
                                             <td class="product-name">
-                                                <a href="single-product.html">Ship Your Idea</a>
+                                                <a href="{{route('details', ['slug' => $item->product->slug])}}">{{$item->product->name}}</a>
                                             </td>
 
                                             <td class="product-price">
-                                                <span class="amount">£15.00</span>
+                                                <span class="amount">${{$item->product->price}}</span>
                                             </td>
 
                                             <td class="product-quantity">
                                                 <div class="quantity buttons_added">
                                                     <input type="button" class="minus" value="-">
-                                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="1" min="0" step="1">
+                                                    <span>{{$item->quantity}}</span>
                                                     <input type="button" class="plus" value="+">
                                                 </div>
                                             </td>
 
                                             <td class="product-subtotal">
-                                                <span class="amount">£15.00</span>
+                                                <span class="amount">${{$item->price}}</span>
                                             </td>
                                         </tr>
+                                        @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="6">Korzinkada mahsulot yo'q</td>
+                                            </tr>
+                                        @endif
                                         <tr>
                                             <td class="actions" colspan="6">
                                                 
