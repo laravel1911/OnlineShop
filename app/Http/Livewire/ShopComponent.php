@@ -5,17 +5,20 @@ namespace App\Http\Livewire;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Wishlist;
 use Livewire\Component;
 use App\Traits\MyTrait;
+use Livewire\WithPagination;
 
 class ShopComponent extends Component
 {
-    use MyTrait;
+    use MyTrait, WithPagination;
     public $search;
     public $category_slug; // model
     public $max;
     public $quantity;
     public $min;
+    public $wishlist;
 
     public function mount()
     {
@@ -24,6 +27,7 @@ class ShopComponent extends Component
         $this->max = null;
         $this->min = null;
         $this->quantity = 1;
+        $this->wishlist = null;
     }
 
     public function render()
@@ -42,15 +46,20 @@ class ShopComponent extends Component
         if($this->min){
             $products = $products->where('price', '>=', $this->min);
         }
-        $products = $products->inRandomOrder()->limit(12)->get();
+        $products = $products->paginate(4);
         $categories = Category::get();
+        $wishlists = Wishlist::where('user_id', auth()->id())->get();
 
-
-        return view('livewire.shop-component', ['products' => $products, 'categories' => $categories])->layout('layouts.layout');
+        return view('livewire.shop-component', ['products' => $products, 'categories' => $categories, 'wishlists' => $wishlists])->layout('layouts.layout');
     }
 
     public function addToCart($product_id)
     {
         $this->actionCart($product_id);
+    }
+
+    public function addwishlist($product_id)
+    {
+        $this->addToWishlist($product_id);
     }
 }

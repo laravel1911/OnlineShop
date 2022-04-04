@@ -77,6 +77,13 @@
                             <form class="cart">
                                 <button class="add_to_cart_button" wire:click.prevent="addToCart({{$product->id}})" >Add to cart</button>
                             </form>
+                            @if($wishlist)
+                                <span> <img src="{{asset('assets/img/toliqyurak.png')}}"
+                                            wire:click.prevent="addwishlist({{$product->id}})" width="50" alt=""></span>
+                            @else
+                                <span> <img src="{{asset('assets/img/yurak.png')}}" width="50" alt=""
+                                            wire:click.prevent="addwishlist({{$product->id}})"></span>
+                            @endif
                         </div>
                     </div>
                 @endforeach

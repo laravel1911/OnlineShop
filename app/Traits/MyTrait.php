@@ -2,9 +2,9 @@
 
 namespace App\Traits;
 
-use App\Models\{Product, Cart};
+use App\Models\{Product, Cart, Wishlist};
 /**
- * 
+ *
  */
 trait MyTrait
 {
@@ -31,5 +31,22 @@ trait MyTrait
         } else{
             return redirect()->route('login');
         }
+    }
+
+    public function addToWishlist($product_id)
+    {
+        if(auth()->check()){
+            $wishlist = Wishlist::where('user_id', auth()->id())->where('product_id', $product_id)->first();
+            if($wishlist){
+                return $wishlist->delete();
+            } else{
+                return Wishlist::create([
+                    'user_id' => auth()->id(),
+                    'product_id' => $product_id
+                ]);
+            }
+
+        } else
+            return redirect()->route('login');
     }
 }
