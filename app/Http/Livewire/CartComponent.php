@@ -19,9 +19,11 @@ class CartComponent extends Component
     }
     public function minus($id){
         $cart =Cart::find($id);
+        $product =Product::find($id);
         if($cart->quantity > 1){
             $cart -> update([
-                'quantity' => $cart->quantity - 1
+                'quantity' => $cart->quantity - 1,
+                'price' => $cart->price - $product->price
             ]);
         }else{
             return $cart->delete();
@@ -30,9 +32,11 @@ class CartComponent extends Component
 
     public function plus($id){
         $cart =Cart::find($id);
+        $product =Product::find($id);
         if($cart->quantity > 0){
             $cart -> update([
-                'quantity' => $cart->quantity + 1
+                'quantity' => $cart->quantity + 1,
+                'price' => $cart->price + $product->price
             ]);
         }else{
             return $cart->delete();
