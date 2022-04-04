@@ -15,12 +15,14 @@ class ShopComponent extends Component
     public $category_slug; // model
     public $max;
     public $quantity;
+    public $wishlist;
     public function mount()
     {
         $this->search = request()->get('search', null);
         $this->category_slug = null;
         $this->max = null;
         $this->quantity = 1;
+        $this->wishlist = null;
     }
 
     public function render()
@@ -46,5 +48,10 @@ class ShopComponent extends Component
     public function addToCart($product_id)
     {
         $this->actionCart($product_id);
+    }
+
+    public function addwishlist($product_id)
+    {
+        $this->addToWishlist($product_id);
     }
 }
