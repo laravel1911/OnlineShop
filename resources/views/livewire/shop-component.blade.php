@@ -77,7 +77,7 @@
                             <form class="cart">
                                 <button class="add_to_cart_button" wire:click.prevent="addToCart({{$product->id}})" >Add to cart</button>
                             </form>
-                            @if($wishlist)
+                            @if($wishlists)
                                 <span> <img src="{{asset('assets/img/toliqyurak.png')}}"
                                             wire:click.prevent="addwishlist({{$product->id}})" width="50" alt=""></span>
                             @else
@@ -96,17 +96,15 @@
                         <nav>
                           <ul class="pagination">
                             <li>
-                              <a href="#" aria-label="Previous">
+                              <a style="cursor: pointer" wire:click="previousPage()" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                               </a>
                             </li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
+                            @for ($i=1; $i<=$products->lastPage(); $i++)
+                                <li ><a style="cursor: pointer" wire:click="gotoPage({{$i}})">{{$i}}</a></li>
+                            @endfor
                             <li>
-                              <a href="#" aria-label="Next">
+                              <a style="cursor: pointer" wire:click="nextPage()" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                               </a>
                             </li>

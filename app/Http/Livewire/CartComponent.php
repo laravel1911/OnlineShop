@@ -13,8 +13,9 @@ class CartComponent extends Component
         // dd($id);
         $cart = Cart::find($id); //Cart::where('id', $id)->first();
         if($cart)
-            return $cart->delete();
+            $cart->delete();
 
+        $this->emitTo('korzinka-component', 'load');
         return false;
     }
     public function minus($id){
@@ -26,8 +27,9 @@ class CartComponent extends Component
                 'price' => $cart->price - $product->price
             ]);
         }else{
-            return $cart->delete();
+            $cart->delete();
         }
+        $this->emitTo('korzinka-component', 'load');
     }
 
     public function plus($id){
@@ -39,8 +41,9 @@ class CartComponent extends Component
                 'price' => $cart->price + $product->price
             ]);
         }else{
-            return $cart->delete();
+            $cart->delete();
         }
+        $this->emitTo('korzinka-component', 'load');
     }
 
 

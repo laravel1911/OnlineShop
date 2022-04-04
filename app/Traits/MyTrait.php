@@ -27,7 +27,7 @@ trait MyTrait
                 ]);
             }
             session()->flash('message', 'Mahsulot savatga muvaffaqiyatli qo\'shildi');
-            return $cart;
+            $this->emitTo('korzinka-component', 'load');
         } else{
             return redirect()->route('login');
         }
@@ -38,14 +38,14 @@ trait MyTrait
         if(auth()->check()){
             $wishlist = Wishlist::where('user_id', auth()->id())->where('product_id', $product_id)->first();
             if($wishlist){
-                return $wishlist->delete();
+                $wishlist->delete();
             } else{
-                return Wishlist::create([
+                Wishlist::create([
                     'user_id' => auth()->id(),
                     'product_id' => $product_id
                 ]);
             }
-
+            $this->emitTo('korzinka-component', 'load');
         } else
             return redirect()->route('login');
     }
