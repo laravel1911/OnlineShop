@@ -107,11 +107,17 @@
                                     </form>
 
                                     @if($wishlist)
+                                    <abbr title="Wishlistdan o'chirish">
                                         <span> <img src="{{asset('assets/img/toliqyurak.png')}}"
-                                                    wire:click.prevent="addWishlist({{$product->id}})" width="50" alt=""></span>
+                                            wire:click.prevent="addWishlist({{$product->id}})" width="50" alt=""></span>
+                                    </abbr>
+
                                     @else
+                                    <abbr title="Wishlistga qo'shish ">
                                         <span> <img src="{{asset('assets/img/yurak.png')}}" width="50" alt=""
                                                     wire:click.prevent="addWishlist({{$product->id}})"></span>
+                                    </abbr>
+
                                     @endif
                                     <div class="product-inner-category">
                                         <p>Category: <a href="">{{$product->category->name}}</a>. Tags: <a href="">awesome</a>,
