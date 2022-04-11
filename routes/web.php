@@ -7,6 +7,7 @@ use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\ShopComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
+use App\Http\Controllers\UserController;
 use App\Http\Livewire\ActionCartComponent;
 use App\Http\Livewire\Checkout;
 use App\Http\Livewire\HomeComponent;
@@ -54,3 +55,5 @@ Route::resource('products' , ProductController::class);
 Route::get('/index', [UserController::class, 'index'])->name('user_index');
 Route::get('/show', [UserController::class, 'show'])->name('user_show');
 Route::get('/changestatus', [UserController::class, 'index'])->name('user_changestatus');
+
+Route::get('/role', [UserController::class, 'craeteRole']);

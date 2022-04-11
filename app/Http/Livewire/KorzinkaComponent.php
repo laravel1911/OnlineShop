@@ -12,12 +12,7 @@ class KorzinkaComponent extends Component
 
     public function render()
     {
-        //if(auth()->check())
-        //{
-            $this->cart = Cart::get();
-            return view('livewire.korzinka-component', ['cart'=> $this->cart])->layout('layouts.layout');
-        //}
-
-        //return redirect()->route('login');
+        $this->cart = Cart::get();
+        return view('livewire.korzinka-component', ['cart'=> $this->cart])->layout('layouts.layout');
     }
 }
