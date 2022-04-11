@@ -40,18 +40,17 @@
                 <div class="single-sidebar">
                     <h2 class="sidebar-title">Price</h2>
                         <div class="thubmnail-recent">
-
+                            MinPrice:
                             <input
                                 type="text"
                                 wire:model="max"
                                 value="{{ $max }}">
-                                MinPrice <br>
+                                MaxPrice
                             <input
                                 type="text"
                                 wire:model="min"
                                 value="{{ $min }}">
-                                MaxPrice <br>
-                            <input type ="submit" value="Submit">
+
                 </div>
             </div>
         </div>

@@ -49,7 +49,7 @@ class ShopComponent extends Component
         $products = $products->paginate(4);
         $categories = Category::get();
         $wishlists = Wishlist::where('user_id', auth()->id())->get();
-
+        // dd($wishlists);
         return view('livewire.shop-component', ['products' => $products, 'categories' => $categories, 'wishlists' => $wishlists])->layout('layouts.layout');
     }
 

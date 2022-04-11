@@ -7,6 +7,7 @@ use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\ShopComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
+use App\Http\Livewire\ActionCartComponent;
 use App\Http\Livewire\Checkout;
 use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\DetailsComponent;
@@ -38,6 +39,7 @@ Route::delete('/category/destroy/{number}', [CategoryController::class, 'destroy
 // Route::get('/test', CategoryComponent::class)->name('home');
 Route::get('/shop', ShopComponent::class)->name('shop');
 Route::get('/cart', CartComponent::class)->name('cart');
+Route::get( '/actioncart', ActionCartComponent::class)->name('actioncart');
 Route::get('/', HomeComponent::class)->name('home');
 Route::get('/checkout', Checkout::class)->name('checkout');
 Route::get('/details/{slug}', DetailsComponent::class)->name('details');
