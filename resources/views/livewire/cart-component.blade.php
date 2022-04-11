@@ -93,7 +93,7 @@
                                         @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="6">Korzinkada mahsulot yo'q</td>
+                                                <td colspan="6">Korzinkada mahsulot yoq</td>
                                             </tr>
                                         @endif
                                         <tr>

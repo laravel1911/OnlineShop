@@ -10,6 +10,7 @@ use App\Http\Controllers;
 use App\Http\Livewire\Checkout;
 use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\DetailsComponent;
+use App\Http\Livewire\WishlistTableComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::get('/cart', CartComponent::class)->name('cart');
 Route::get('/', HomeComponent::class)->name('home');
 Route::get('/checkout', Checkout::class)->name('checkout');
 Route::get('/details/{slug}', DetailsComponent::class)->name('details');
+Route::get('/wishlist', WishlistTableComponent::class)->name('wishlist');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

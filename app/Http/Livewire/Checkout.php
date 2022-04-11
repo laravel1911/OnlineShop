@@ -23,4 +23,5 @@ class Checkout extends Component
         }
         return redirect()->route('login');
     }
+
 }

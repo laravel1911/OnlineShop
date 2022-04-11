@@ -73,6 +73,7 @@
                         <h1><a href="{{route('home')}}"><img src="{{asset('assets/img/logo.png')}}"></a></h1>
                     </div>
                 </div>
+                @livewire('wishlist-component')
                 @livewire('korzinka-component')
             </div>
         </div>
