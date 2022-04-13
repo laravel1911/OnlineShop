@@ -40,6 +40,7 @@ class DetailsComponent extends Component
     public function addToCart($product_id)
     {
         $this->actionCart($product_id);
+        $this->emitTo('wishlist-component', 'wishlist');
     }
 
     public function addWishlist($product_id)
