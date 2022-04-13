@@ -52,10 +52,19 @@
 
                             <li class="dropdown dropdown-small">
                                 <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
+                                {{-- <ul class="dropdown-menu">
                                     <li><a href="#">English</a></li>
                                     <li><a href="#">French</a></li>
                                     <li><a href="#">German</a></li>
+                                </ul> --}}
+                                <ul  class="dropdown-menu">
+                                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                        <li>
+                                            <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                                {{ $properties['native'] }}
+                                            </a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </li>
                         </ul>
@@ -92,13 +101,13 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="{{route('home')}}">Home</a></li>
-                        <li><a href="{{route('shop')}}">Shop page</a></li>
-                        <li><a href="{{route('cart')}}">Cart</a></li>
-                        <li><a href="{{route('checkout')}}">Checkout</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li><a href="#">Others</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li class="active"><a href="{{route('home')}}">{{ __('main.home') }}</a></li>
+                        <li><a href="{{route('shop')}}">{{ __('main.shop') }}</a></li>
+                        <li><a href="{{route('cart')}}">{{ __('main.cart') }}</a></li>
+                        <li><a href="{{route('checkout')}}">{{ __('main.checkout') }}</a></li>
+                        {{-- <li><a href="#">Category</a></li>
+                        <li><a href="#">Others</a></li> --}}
+                        <li><a href="#">{{ __('main.contact') }}</a></li>
                     </ul>
                 </div>
                 @livewire('search-component')

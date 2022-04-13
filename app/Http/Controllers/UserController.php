@@ -24,9 +24,14 @@ class UserController extends Controller
 
     public function craeteRole()
     {
-        $role = Role::create(['name' => 'admin']);
+        // $role = Role::create(['name' => 'seller']);
         $user = User::first();
         $user->assignRole('admin');
+        // $roles = $user->getRoleNames();
+        // $user->removeRole('admin');
+        // if($user->hasRole('admin'))
+        //     return 'bor';
+
         return 'success';
     }
 
