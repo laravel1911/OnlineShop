@@ -8,6 +8,7 @@ use App\Http\Livewire\ShopComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\ActionCartComponent;
 use App\Http\Livewire\Checkout;
@@ -68,4 +69,10 @@ use App\Http\Livewire\WishlistTableComponent;
 Route::group(['prefix' => 'admin'], function (){
     Route::get('/', [HomeController::class, 'index'])->name('admin.home');
     Route::get('/users', [HomeController::class, 'listOfUsers'])->name('admin.users');
+    Route::get('/index', [AdminProductController::class, 'index'])->name('admin.product.index');
+    Route::get('/create', [AdminProductController::class, 'create'])->name('admin.product.create');
+    Route::get('/store', [AdminProductController::class, 'store'])->name('admin.product.store');
+    Route::get('/show/{product}', [AdminProductController::class, 'show'])->name('admin.product.show');
+    Route::get('/edit/{product}', [AdminProductController::class, 'edit'])->name('admin.product.edit');
+    Route::put('/update/{product}', [AdminProductController::class, 'update'])->name('admin.product.update');
 });
