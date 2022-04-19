@@ -44,17 +44,18 @@ use App\Http\Livewire\WishlistTableComponent;
     Route::put('/category/update/{number}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/destroy/{number}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
-    // Route::get('/test', CategoryComponent::class)->name('home');
-    Route::get('/shop', ShopComponent::class)->name('shop');
-    Route::get('/cart', CartComponent::class)->name('cart');
-    Route::get( '/actioncart', ActionCartComponent::class)->name('actioncart');
-    Route::get('/', HomeComponent::class)->name('home');
-    Route::get('/checkout', Checkout::class)->name('checkout');
-    Route::get('/details/{slug}', DetailsComponent::class)->name('details');
-    Route::get('/wishlist', WishlistTableComponent::class)->name('wishlist');
+// Route::get('/test', CategoryComponent::class)->name('home');
+Route::get('/shop', ShopComponent::class)->name('shop');
+Route::get('/cart', CartComponent::class)->name('cart');
+Route::get( '/actioncart', ActionCartComponent::class)->name('actioncart');
+Route::get('/', HomeComponent::class)->name('home');
+Route::get('/checkout', Checkout::class)->name('checkout');
+Route::get('/details/{slug}', DetailsComponent::class)->name('details');
+Route::get('/wishlist', WishlistTableComponent::class)->name('wishlist');
+Route::get('reviews/{order_detail_id}', \App\Http\Livewire\ReviewComponent::class)->name('review');
 
 
-    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 
