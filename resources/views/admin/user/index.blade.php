@@ -40,22 +40,25 @@
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Username</th>
-                          <th>Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                          
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Abby</td>
-                          <td>Barrett</td>
-                          <td>@abbeme</td>
-                          <td>
+                          @foreach ($users as $values )
+                          <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr>
+                            <th scope="row">{{ $values->id }}</th>
+                            <td>{{ $values->name }}</td>
+                            <td>{{ $values->email }}</td>
+                            <td>{{ $values->login }}</td>
+                            <td>
+
+                          @endforeach
                             <a class="blue-text" data-toggle="tooltip" data-placement="top" title="See results"><i
                                 class="fas fa-user"></i></a>
                             <a class="teal-text" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>

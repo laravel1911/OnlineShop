@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +15,11 @@ class HomeController extends Controller
 
     public function listOfUsers()
     {
-        return view('admin.user.index');
+        $users = User::get();
+        return view('admin.user.index', ['users' => $users]);
+    }
+
+    public function edit($id);{
+        
     }
 }
