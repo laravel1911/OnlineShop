@@ -57,23 +57,25 @@ class ProductController extends Controller
         return redirect()->route('admin.product.index');
     }
 
-    public function show(Product $product)
+    public function show($slug)
     {
-        // dd($product
+        $product = Product::where('slug', $slug)->first();
+        // dd($product);
+
         return view('admin.product.show', ['product' => $product]);
     }
-    public function edit($id)
+    public function edit($slug)
     {
         $categories = Category::get();
 
-        $product = Product::where('id', '=', $id)->first();
+        $product = Product::where('slug', $slug)->first();
 
         return view('admin.product.edit', ['product' => $product, 'categories' => $categories]);
     }
 
     public function update(Request $request, Product $product)
     {
-        
+
     }
 }
 

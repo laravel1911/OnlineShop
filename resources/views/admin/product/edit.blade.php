@@ -150,7 +150,7 @@
           {{-- <input type="submit" value="Save" class="btn btn-success" style="display: block !important" width="100%"> --}}
           <div style="display: flex">
             <button type="submit" class="btn btn-success">Save</button>
-            <a href="{{route('admin.product.show', ['product' => $product->id])}}" class="btn btn-light" width="25%">Back</a>
+            <a href="{{route('admin.product.show', ['slug' => $product->slug])}}" class="btn btn-light" width="25%">Back</a>
             <a href="{{route('admin.product.index')}}" class="btn btn-primary">&#926 Product list</a>
           </div>
         </section>
