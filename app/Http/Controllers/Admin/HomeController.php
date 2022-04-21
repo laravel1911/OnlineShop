@@ -19,7 +19,7 @@ class HomeController extends Controller
         return view('admin.user.index', ['users' => $users]);
     }
 
-    public function edit($id);{
-        
-    }
+    //public function edit($id);{
+
+    //}
 }

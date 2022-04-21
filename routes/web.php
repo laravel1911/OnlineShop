@@ -7,7 +7,9 @@ use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\ShopComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\ActionCartComponent;
 use App\Http\Livewire\Checkout;
@@ -68,4 +70,12 @@ use App\Http\Livewire\WishlistTableComponent;
 Route::group(['prefix' => 'admin'], function (){
     Route::get('/', [HomeController::class, 'index'])->name('admin.home');
     Route::get('/users', [HomeController::class, 'listOfUsers'])->name('admin.users');
+    Route::get('/users/show/{id}', [AdminUserController::class, 'show'])->name('admin.show');
+    Route::get('/users/edit/{id}', [AdminUserController::class, 'edit'])->name('admin.edit');
+    Route::put('/users/update/{id}', [AdminUserController::class, 'update'])->name('admin.update');
+    Route::delete('/users/delete/{id}', [AdminUserController::class, 'destroy'])->name('admin.delete');
+
+    Route::get('/category', [AdminCategoryController::class, 'index'])->name('category');
+
+
 });
