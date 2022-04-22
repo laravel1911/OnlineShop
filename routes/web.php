@@ -72,7 +72,7 @@ Route::group(['prefix' => 'admin'], function (){
     Route::get('/users', [HomeController::class, 'listOfUsers'])->name('admin.users');
     Route::get('/index', [AdminProductController::class, 'index'])->name('admin.product.index');
     Route::get('/create', [AdminProductController::class, 'create'])->name('admin.product.create');
-    Route::get('/store', [AdminProductController::class, 'store'])->name('admin.product.store');
+    Route::post('/store', [AdminProductController::class, 'store'])->name('admin.product.store');
     Route::get('/show/{slug}', [AdminProductController::class, 'show'])->name('admin.product.show');
     Route::get('/edit/{slug}', [AdminProductController::class, 'edit'])->name('admin.product.edit');
     Route::put('/update/{product}', [AdminProductController::class, 'update'])->name('admin.product.update');

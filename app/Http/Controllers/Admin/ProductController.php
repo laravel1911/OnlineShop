@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -25,12 +26,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $category = null;
-        if($request->category_name){
-            $category = Category::create(['name' => $request->category_name]);
-        }
-
-        $request->validate([
+        $params = $request->validate([
             'name' => 'required',
             'price' => 'required',
             'category_id' => 'required',
@@ -41,9 +37,34 @@ class ProductController extends Controller
             'image' => 'required',
             'images' => 'required'
         ]);
+        // dd($params);
+
+        $category = null;
+        if($request->category_name){
+            $category = Category::create(['name' => $request->category_name]);
+        }
+
+        $image_name = time() . '.' . $request->file('image')->getClientOriginalExtension();
+        $request->file('image')->storeAs('/public/images', $image_name);
+        $images = null;
+        if(isset($request->images)){
+            if($request->hasFile('images'))
+            {
+                $image_names = [];
+                foreach($request->file('images') as $key => $item){
+                    $file_names = time() . '_' . $key . '.' . $item->getClientOrginalExtension();
+                    $item->storeAs('/public/images/', $file_names);
+                    $image_names[] = $file_names;
+                }
+                $images = implode(',', $image_names);
+            }
+        }
+
+
 
         Product::create([
             'name' => $request->name,
+            'slug' => \Str::slug($request->name),
             'price' => $request->price,
             'category_id' => $category ? $category->id : $request->category_id,
             'quantity' => $request->quantity,
