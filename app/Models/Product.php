@@ -18,4 +18,8 @@ class Product extends Model
     {
         return $this->hasMany(Wishlist::class, 'product_id', 'id');
     }
+    public function order_details()
+    {
+        return $this->hasMany(Order_Details::class, 'product_id', 'id');
+    }
 }

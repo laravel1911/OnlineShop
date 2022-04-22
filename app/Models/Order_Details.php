@@ -9,6 +9,11 @@ class Order_Details extends Model
 {
     use HasFactory;
 
+    // rating =>
+    // 1 -> not reviewed = comment qoldirilmagan
+    // 2 ->  reviewed = comment qoldiriilgan
+
+    protected $guarded = [];
     public function order()
     {
         return $this->belongsTo(Order::class, 'order_id', 'id');

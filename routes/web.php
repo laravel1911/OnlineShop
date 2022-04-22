@@ -15,6 +15,8 @@ use App\Http\Livewire\ActionCartComponent;
 use App\Http\Livewire\Checkout;
 use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\DetailsComponent;
+use App\Http\Livewire\OrderComponent;
+use App\Http\Livewire\OrderDetailsComponent;
 use App\Http\Livewire\WishlistTableComponent;
 
 /*
@@ -45,17 +47,22 @@ use App\Http\Livewire\WishlistTableComponent;
     Route::put('/category/update/{number}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/destroy/{number}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
-    // Route::get('/test', CategoryComponent::class)->name('home');
-    Route::get('/shop', ShopComponent::class)->name('shop');
-    Route::get('/cart', CartComponent::class)->name('cart');
-    Route::get( '/actioncart', ActionCartComponent::class)->name('actioncart');
-    Route::get('/', HomeComponent::class)->name('home');
-    Route::get('/checkout', Checkout::class)->name('checkout');
-    Route::get('/details/{slug}', DetailsComponent::class)->name('details');
-    Route::get('/wishlist', WishlistTableComponent::class)->name('wishlist');
+// Route::get('/test', CategoryComponent::class)->name('home');
+Route::get('/shop', ShopComponent::class)->name('shop');
+Route::get('/cart', CartComponent::class)->name('cart');
+Route::get( '/actioncart', ActionCartComponent::class)->name('actioncart');
+Route::get('/', HomeComponent::class)->name('home');
+Route::get('/checkout', Checkout::class)->name('checkout');
+Route::get('/details/{slug}', DetailsComponent::class)->name('details');
+Route::get('/wishlist', WishlistTableComponent::class)->name('wishlist');
+Route::get('reviews/{order_detail_id}', \App\Http\Livewire\ReviewComponent::class)->name('review');
+Route::get('/order', OrderComponent::class)->name('order');
+Route::get('/order_details', OrderDetailsComponent::class)->name('order_details');
 
 
-    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 
@@ -76,6 +83,6 @@ Route::group(['prefix' => 'admin'], function (){
     Route::delete('/users/delete/{id}', [AdminUserController::class, 'destroy'])->name('admin.delete');
 
     Route::get('/category', [AdminCategoryController::class, 'index'])->name('category');
-
+    Route::get('/category/show/{id}', [AdminCategoryController::class, 'show'])->name('admin.category.show');
 
 });

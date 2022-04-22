@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,7 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $category = Category::get();
+        return view('admin.category.index', ['category'=>$category]);
     }
 
     /**
@@ -46,7 +49,10 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        //dd($id);
+        $category = Category::with('product')->where('category_id', $id)->first();
+        //$product = Product::with('category')->where('category_id', $id);
+        return view('admin.category.show', ['category' => $category]);
     }
 
     /**

@@ -51,16 +51,9 @@
                             @foreach ($category as $values )
                             <tr>
                                 <th scope="row">{{ $values->id }}</th>
-                                <td><a href="{{ route('admin.category.show', ['id' => $values->id]) }}">{{ $values->name }}</a></td>
-                                <td>
-                                    @csrf
-                                    @method('delete')
-                                    <a class="blue-text" data-toggle="tooltip" data-placement="top" title="See results"><i
-                                        class="fas fa-user"></i></a>
-                                        <a href="{{ route('admin.edit', ['id' => $values->id]) }}" class="teal-text" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="{{ route('admin.delete', ['id' => $values->id]) }}" class="red-text" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fas fa-times"></i></a>
-                                    </td>
-                                </tr>
+                                <td>{{ $values->product->name }}</td>
+
+                            </tr>
                             @endforeach
 
                       </tbody>

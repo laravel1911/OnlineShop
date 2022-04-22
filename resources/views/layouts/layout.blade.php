@@ -29,11 +29,22 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="{{route('dashboard')}}"><i class="fa fa-user"></i> My Account</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle waves-effect" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                  <i class="fa fa-user"></i> <span class="clearfix d-none d-sm-inline-block">Profile</span></a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                  <a class="dropdown-item waves-effect waves-light" href="{{route('dashboard')}}">My account</a>
+                                  <a class="dropdown-item waves-effect waves-light" href="{{route('login')}}">Log Out</a>
+                                </div>
+                              </li>
+                            {{-- <li><a href="{{route('dashboard')}}"><i class="fa fa-user"></i>Profile</a></li> --}}
                             <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
                             <li><a href="{{route('actioncart')}}"><i class="fa fa-user"></i> My Cart</a></li>
                             <li><a href="{{route('checkout')}}"><i class="fa fa-user"></i> Checkout</a></li>
                             <li><a href="{{route('login')}}"><i class="fa fa-user"></i> Login</a></li>
+                            <li><a href="{{route('order')}}"><i class="fa fa-user"></i> Order</a></li>
+                            <li><a href="{{route('order_details')}}"><i class="fa fa-user"></i> Order details</a></li>
                         </ul>
                     </div>
                 </div>
@@ -138,7 +149,7 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">User Navigation </h2>
                         <ul>
-                            <li><a href="#">My account</a></li>
+                            <li><a href="#">Profile</a></li>
                             <li><a href="#">Order history</a></li>
                             <li><a href="#">Wishlist</a></li>
                             <li><a href="#">Vendor contact</a></li>

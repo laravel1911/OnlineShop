@@ -25,11 +25,10 @@
               <div class="tabs-wrapper">
                 <ul class="nav tabs-primary primary-color" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link waves-light active" data-toggle="tab" href="#panel83" role="tab">Personal
-                      Clients</a>
+                    <a class="nav-link waves-light active" data-toggle="tab" href="#panel83" role="tab">Admin</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link waves-light" data-toggle="tab" href="#panel84" role="tab">Corporate Clients</a>
+                    <a class="nav-link waves-light" data-toggle="tab" href="#panel84" role="tab">Users</a>
                   </li>
                 </ul>
               </div>

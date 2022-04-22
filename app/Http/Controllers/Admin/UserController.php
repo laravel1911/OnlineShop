@@ -84,6 +84,7 @@ class UserController extends Controller
         $users->password = $request->password;
         $users->phone = $request->phone;
         $users->image = $request->image;
+        dd($request);
         $users->save();
 
         return redirect()->route('admin.users');

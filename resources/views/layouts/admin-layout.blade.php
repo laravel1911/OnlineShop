@@ -239,7 +239,7 @@
 
   <!--Main layout-->
   <main>
-    <div class="container-fluid">
+    <div class="container-fluid w-100">
 
       @yield('content')
 
@@ -263,9 +263,9 @@
   <!--/.Footer-->
 
 
-  <!-- SCRIPTS -->
+   <!-- SCRIPTS -->
   <!-- JQuery -->
-  <script src=".{{asset('js/jquery-3.3.1.min.js')}}"></script>
+  <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="{{asset('js/popper.min.js')}}"></script>
   <!-- Bootstrap core JavaScript -->
@@ -273,6 +273,8 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="{{asset('js/mdb.min.js')}}"></script>
   <!--Initializations-->
+  <script type="text/javascript" src="{{asset('js/addons/datatables.min.js')}}"></script>
+  <!--Custom scripts-->
   <script>
     // SideNav Initialization
     $(".button-collapse").sideNav();
@@ -283,6 +285,22 @@
       wheelPropagation: true,
       minScrollbarLength: 20
     });
+
+    $('#dtMaterialDesignExample').DataTable();
+    $('#dtMaterialDesignExample_wrapper').find('label').each(function () {
+      $(this).parent().append($(this).children());
+    });
+    $('#dtMaterialDesignExample_wrapper .dataTables_filter').find('input').each(function () {
+      $('input').attr("placeholder", "Search");
+      $('input').removeClass('form-control-sm');
+    });
+    $('#dtMaterialDesignExample_wrapper .dataTables_length').addClass('d-flex flex-row');
+    $('#dtMaterialDesignExample_wrapper .dataTables_filter').addClass('md-form');
+    $('#dtMaterialDesignExample_wrapper select').removeClass(
+      'custom-select custom-select-sm form-control form-control-sm');
+    $('#dtMaterialDesignExample_wrapper select').addClass('mdb-select');
+    $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
+    $('#dtMaterialDesignExample_wrapper .dataTables_filter').find('label').remove();
 
     // Data Picker Initialization
     $('.datepicker').pickadate();
