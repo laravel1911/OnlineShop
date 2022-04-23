@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\{Product, Cart, Wishlist};
+use App\Models\{Product, Cart, Review, Wishlist};
 use Livewire\Component;
 use App\Traits\MyTrait;
 
@@ -26,6 +26,7 @@ class DetailsComponent extends Component
         $related_products = Product::where('category_id', $product->category_id)->inRandomOrder()->limit(6)->get();
         $random_products = Product::where('category_id', '!=', $product->category_id)->inRandomOrder()->limit(4)->get();
         $recent_products = Product::inRandomOrder()->limit(5)->get();
+        $reviews = Review::with('user')->where('product_id', $product->id)->get();
 
         return view('livewire.details-component',
         [
@@ -33,7 +34,8 @@ class DetailsComponent extends Component
             'random_products' => $random_products,
             'recent_product' => $recent_products,
             'related_products' => $related_products,
-            'wishlist' => $wishlist
+            'wishlist' => $wishlist,
+            'reviews' => $reviews
         ])->layout('layouts.layout');
     }
       // DRY don't repeat yourself

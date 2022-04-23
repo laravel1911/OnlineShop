@@ -43,6 +43,8 @@
                             <li><a href="{{route('actioncart')}}"><i class="fa fa-user"></i> My Cart</a></li>
                             <li><a href="{{route('checkout')}}"><i class="fa fa-user"></i> Checkout</a></li>
                             <li><a href="{{route('login')}}"><i class="fa fa-user"></i> Login</a></li>
+                            <li><a href="{{route('order')}}"><i class="fa fa-user"></i> Order</a></li>
+                            <li><a href="{{route('order_details')}}"><i class="fa fa-user"></i> Order details</a></li>
                         </ul>
                     </div>
                 </div>

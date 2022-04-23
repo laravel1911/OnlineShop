@@ -7,13 +7,16 @@ use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\ShopComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\ActionCartComponent;
 use App\Http\Livewire\Checkout;
 use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\DetailsComponent;
+use App\Http\Livewire\OrderComponent;
+use App\Http\Livewire\OrderDetailsComponent;
 use App\Http\Livewire\WishlistTableComponent;
 
 /*
@@ -53,6 +56,10 @@ Route::get('/checkout', Checkout::class)->name('checkout');
 Route::get('/details/{slug}', DetailsComponent::class)->name('details');
 Route::get('/wishlist', WishlistTableComponent::class)->name('wishlist');
 Route::get('reviews/{order_detail_id}', \App\Http\Livewire\ReviewComponent::class)->name('review');
+Route::get('/order', OrderComponent::class)->name('order');
+Route::get('/order_details', OrderDetailsComponent::class)->name('order_details');
+
+
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -76,4 +83,12 @@ Route::group(['prefix' => 'admin'], function (){
     Route::get('/show/{slug}', [AdminProductController::class, 'show'])->name('admin.product.show');
     Route::get('/edit/{slug}', [AdminProductController::class, 'edit'])->name('admin.product.edit');
     Route::put('/update/{product}', [AdminProductController::class, 'update'])->name('admin.product.update');
+    Route::get('/users/show/{id}', [AdminUserController::class, 'show'])->name('admin.show');
+    Route::get('/users/edit/{id}', [AdminUserController::class, 'edit'])->name('admin.edit');
+    Route::put('/users/update/{id}', [AdminUserController::class, 'update'])->name('admin.update');
+    Route::delete('/users/delete/{id}', [AdminUserController::class, 'destroy'])->name('admin.delete');
+
+    Route::get('/category', [AdminCategoryController::class, 'index'])->name('category');
+    Route::get('/category/show/{id}', [AdminCategoryController::class, 'show'])->name('admin.category.show');
+
 });
