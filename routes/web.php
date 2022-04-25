@@ -18,6 +18,8 @@ use App\Http\Livewire\DetailsComponent;
 use App\Http\Livewire\OrderComponent;
 use App\Http\Livewire\OrderDetailsComponent;
 use App\Http\Livewire\WishlistTableComponent;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,11 +31,11 @@ use App\Http\Livewire\WishlistTableComponent;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::group(
-//     [
-//         'prefix' => \LaravelLocalization::setLocale(),
-//         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-//     ], function(){
+ Route::group(
+     [
+         'prefix' => LaravelLocalization::setLocale(),
+         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+     ], function(){
 
     // Route::middleware(['checkAdmin'])->get('/test', function () {
     //     return view('welcome');
@@ -72,7 +74,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     Route::get('/changestatus', [UserController::class, 'index'])->name('user_changestatus');
 
     Route::get('/role', [UserController::class, 'craeteRole']);
-// });
+ });
 
 Route::group(['prefix' => 'admin'], function (){
     Route::get('/', [HomeController::class, 'index'])->name('admin.home');
