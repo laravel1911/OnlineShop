@@ -32,15 +32,10 @@
                 @endforeach
                 @else
                     <tr>
-                        <td colspan="6">Korzinkada mahsulot yoq</td>
+                        <td colspan="6">Wishlistga mahsulot qo'shilmagan</td>
                     </tr>
                 @endif
-                <tr>
-                    <td class="actions" colspan="6">
 
-                        <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
-                    </td>
-                </tr>
             </tbody>
         </table>
     </form>

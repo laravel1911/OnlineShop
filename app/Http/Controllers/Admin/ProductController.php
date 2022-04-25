@@ -41,7 +41,10 @@ class ProductController extends Controller
 
         $category = null;
         if($request->category_name){
-            $category = Category::create(['name' => $request->category_name]);
+            $category = Category::create([
+                'name' => $request->category_name,
+                'slug' => \Str::slug($request->name)
+            ]);
         }
 
         $image_name = time() . '.' . $request->file('image')->getClientOriginalExtension();
