@@ -50,7 +50,8 @@ class CategoryController extends Controller
     public function show($id)
     {
         //dd($id);
-        $category = Category::with('product')->where('category_id', $id)->first();
+        $category = Category::with('product')->where('id', $id)->first();
+        //dd($category);
         //$product = Product::with('category')->where('category_id', $id);
         return view('admin.category.show', ['category' => $category]);
     }

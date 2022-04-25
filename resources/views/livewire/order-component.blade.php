@@ -1,4 +1,5 @@
 <div>
+    @if(auth()->check())
     <form method="post" action="#">
         <table cellspacing="0" class="shop_table cart">
             <thead>
@@ -18,11 +19,11 @@
                 @foreach($order as $item)
                 <tr class="cart_item">
                     <td class="product-remove">
-                        <a title="Remove this item" class="fa fa-trash" href="" ></a>
+                        <a title="Remove this item" class="fa fa-trash" href="{{route('order_details')}}" ></a>
                     </td>
 
                     <td class="product-price">
-                        <span class="amount">{{$item->fullname}}</span>
+                        <span class="amount"><a href="{{route('order_details')}}">{{$item->fullname}}</a></span>
                     </td>
 
                     <td class="product-price">
@@ -60,4 +61,5 @@
             </tbody>
         </table>
     </form>
+    @endif
 </div>

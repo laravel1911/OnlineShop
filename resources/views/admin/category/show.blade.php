@@ -48,10 +48,10 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($category as $values )
+                            @foreach ($category->product as $values )
                             <tr>
                                 <th scope="row">{{ $values->id }}</th>
-                                <td>{{ $values->product->name }}</td>
+                                <td>{{ $values->name }}</td>
 
                             </tr>
                             @endforeach

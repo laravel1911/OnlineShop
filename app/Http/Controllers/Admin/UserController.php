@@ -77,11 +77,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request -> validate([
+            'name' => 'required',
+            'login' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+        ]);
+
         $users = User::where('id', '=', $id )->first();
         $users->name = $request->name;
         $users->login = $request->login;
         $users->email = $request->email;
-        $users->password = $request->password;
         $users->phone = $request->phone;
         $users->image = $request->image;
         dd($request);
