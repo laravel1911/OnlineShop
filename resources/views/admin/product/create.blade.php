@@ -109,45 +109,28 @@
 
             <div class="row">
 
-              <div class="col-md-6 mb-4">
+                    <div class="form-group">
 
-                  <div class="md-form">
-                    <div class="file-field">
-                      <div class="btn btn-primary btn-sm float-left">
                         <span>Choose file</span>
                         <span style="color: red">{{$errors->first('image')}}</span>
-                        <input type="file" name="image">
-                      </div>
-                      <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" disabled placeholder="Upload your file">
-                      </div>
+                        <input class="form-control" type="file" name="image">
+
                     </div>
-                  </div>
 
-              </div>
+                    <div class="form-group">
 
-              <div class="col-md-6 mb-4">
-
-                  <div class="md-form">
-                    <div class="file-field">
-                      <div class="btn btn-primary btn-sm float-left">
-                        <span>Choose files</span>
+                      <span>Choose files</span>
                         <span style="color: red">{{$errors->first('images')}}</span>
-                        <input type="file" name="images" multiple>
-                      </div>
-                      <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" disabled placeholder="Upload one or more files">
-                      </div>
-                    </div>
-                  </div>
+                        <input class="form-control" type="file" name="images" multiple>
 
-              </div>
+                    </div>
 
             </div>
 
-
           </div>
+
           <input type="submit" value="Send" class="btn btn-success" style="display: block" width="100%">
+          
         </section>
 
       </div>

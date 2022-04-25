@@ -74,8 +74,8 @@ class ProductController extends Controller
             'description' => $request->description,
             'short_description' => $request->short_description,
             'status' => $request->status,
-            'image' => $request->image,
-            'images' => $request->images,
+            'image' => $image_name,
+            'images' => $images,
         ]);
 
         return redirect()->route('admin.product.index');
@@ -93,13 +93,66 @@ class ProductController extends Controller
         $categories = Category::get();
 
         $product = Product::where('slug', $slug)->first();
-
+        // dd($product->image);
         return view('admin.product.edit', ['product' => $product, 'categories' => $categories]);
     }
 
     public function update(Request $request, Product $product)
     {
+        $params = $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
+            'quantity' => 'required',
+            'description' => 'required',
+            'short_description' => 'required',
+            'status' => 'required',
+            'image' => 'required',
+            'images' => 'required'
+        ]);
 
+        $image = null;
+        if($product->image){
+
+            if($request->file('image')){
+                $image = time() . '.' . $request->file('image')->getClientOriginalExtension();
+                $request->file('image')->storeAs('/public/images/', $image);
+
+                unlink('storage/images/' . $product->image);
+            }
+        }else{
+            $image = time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->storeAs('/public/images', $image);
+        }
+
+        $category = null;
+        if($request->category_id){
+            $category = Category::create([
+                'name' => $request->category_id
+            ]);
+        }
+
+        $data = [
+            'name' => $request->name,
+            'slug' => \Str::slug($request->name),
+            'price' => $request->price,
+            'category_id' => $category ? $category->id : $request->category_id,
+            'quantity' => $request->quantity,
+            'description' => $request->description,
+            'short_description' => $request->short_description,
+            'status' => $request->status,
+            'image' => $image??'',
+            'images' => $images??'',
+        ];
+    }
+
+    public function destroy($id)
+    {
+        $product = Product::where('id', '=', $id)->first();
+
+        $product->delete();
+
+        return redirect()->route('admin.product.index');
     }
 }
 

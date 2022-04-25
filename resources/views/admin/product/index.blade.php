@@ -4,12 +4,12 @@
 <main>
     <div class="container-fluid mb-5">
 
+        <a href="{{route('admin.product.create')}}" style="width: 25%" class="btn btn-success"><strong>➕Create</strong></a>
       <!--Section: Basic examples-->
       <section>
+          <div class="row" >
 
-        <div class="row" >
-
-          <div class="col-md-12">
+              <div class="col-md-12">
 
             <div class="card">
               <div class="card-body">

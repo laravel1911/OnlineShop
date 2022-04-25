@@ -34,15 +34,21 @@
 
           <li><strong>Description:</strong>{{$product->description}}</li>
 
-          <br><li>
-              <a href="{{route('admin.product.index')}}" class="btn btn-primary">&#926 Product list</a>
-              <a href="{{route('admin.product.edit', ['slug' => $product->slug])}}" class="teal-text btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit">
-                  <i class="fas fa-pencil-alt"></i><strong>Edit</strong>
-              </a>
-
-            </li>
 
         </ul>
+        <br>
+        <div style="display: flex">
+            <a href="{{route('admin.product.index')}}" class="btn btn-primary">&#926 Product list</a>
+            <a href="{{route('admin.product.edit', ['slug' => $product->slug])}}" class="teal-text btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit">
+                <i class="fas fa-pencil-alt"></i><strong>Edit</strong>
+            </a>
+            <form action="{{route('admin.product.delete', ['id' => $product->id])}}" method="post">
+                  @csrf
+                  @method('DELETE')
+                  <input type="submit" value="Delete" class="btn btn-danger">
+            </form>
+        </div>
+
 
       </div>
   </main>
