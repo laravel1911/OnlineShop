@@ -25,11 +25,10 @@
               <div class="tabs-wrapper">
                 <ul class="nav tabs-primary primary-color" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link waves-light active" data-toggle="tab" href="#panel83" role="tab">Personal
-                      Clients</a>
+                    <a class="nav-link waves-light active" data-toggle="tab" href="#panel83" role="tab">Admin</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link waves-light" data-toggle="tab" href="#panel84" role="tab">Corporate Clients</a>
+                    <a class="nav-link waves-light" data-toggle="tab" href="#panel84" role="tab">Users</a>
                   </li>
                 </ul>
               </div>
@@ -40,31 +39,32 @@
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
-                          @foreach ($users as $values )
                           <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Email</th>
-                            <th>Username</th>
-                            <th>Actions</th>
-                          </tr>
+                              <th>#</th>
+                              <th>First Name</th>
+                              <th>Email</th>
+                              <th>Username</th>
+                              <th>Actions</th>
+                            </tr>
                         </thead>
                         <tbody>
 
-                          <tr>
-                            <th scope="row">{{ $values->id }}</th>
-                            <td>{{ $values->name }}</td>
-                            <td>{{ $values->email }}</td>
-                            <td>{{ $values->login }}</td>
-                            <td>
-
-                          @endforeach
-                            <a class="blue-text" data-toggle="tooltip" data-placement="top" title="See results"><i
-                                class="fas fa-user"></i></a>
-                            <a class="teal-text" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                            <a class="red-text" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fas fa-times"></i></a>
-                          </td>
-                        </tr>
+                            @foreach ($users as $values )
+                            <tr>
+                                <th scope="row">{{ $values->id }}</th>
+                                <td><a href="{{ route('admin.show', ['id' => $values->id]) }}">{{ $values->name }}</a></td>
+                                <td>{{ $values->email }}</td>
+                                <td>{{ $values->login }}</td>
+                                <td>
+                                    @csrf
+                                    @method('delete')
+                                    <a class="blue-text" data-toggle="tooltip" data-placement="top" title="See results"><i
+                                        class="fas fa-user"></i></a>
+                                        <a href="{{ route('admin.edit', ['id' => $values->id]) }}" class="teal-text" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="{{ route('admin.delete', ['id' => $values->id]) }}" class="red-text" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fas fa-times"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
 
                       </tbody>
                     </table>
@@ -154,37 +154,7 @@
       <!-- Second column -->
       <div class="col-md-4 mb-1">
 
-        <!--Card-->
-        <div class="card profile-card">
 
-          <!--Avatar-->
-          <div class="avatar z-depth-1-half mb-4">
-            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(10).jpg" class="rounded-circle" alt="First sample avatar image">
-          </div>
-
-          <div class="card-body pt-0 mt-0">
-            <!--Name-->
-            <div class="text-center">
-              <h3 class="mb-3 font-weight-bold"><strong>Anna Deynah</strong></h3>
-              <h6 class="font-weight-bold blue-text mb-4">Web Designer</h6>
-            </div>
-
-            <ul class="striped list-unstyled">
-              <li><strong>E-mail address:</strong> a.doe@example.com</li>
-
-              <li><strong>Phone number:</strong> +1 234 5678 90</li>
-
-              <li><strong>Company:</strong> The Company, Inc</li>
-
-              <li><strong>Twitter username:</strong> @anna.doe</li>
-
-              <li><strong>Instagram username:</strong> @anna.doe</li>
-            </ul>
-
-          </div>
-
-        </div>
-        <!--Card-->
 
       </div>
     </div>
