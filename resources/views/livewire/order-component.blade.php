@@ -53,7 +53,7 @@
                 @endforeach
                 @else
                     <tr>
-                        <td colspan="6"> Buyurtmalar yoq</td>
+                        <td colspan="6"><strong style="color: red">Buyurtmalar yoq yoki tizimga kirmagansiz</strong></td>
                     </tr>
                 @endif
                 <tr>

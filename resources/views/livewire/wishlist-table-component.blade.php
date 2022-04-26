@@ -32,7 +32,7 @@
                 @endforeach
                 @else
                     <tr>
-                        <td colspan="6">Wishlistga mahsulot qo'shilmagan</td>
+                        <td colspan="6"><strong style="color: red">Wishlistga mahsulot qo'shilmagan yoki tizimga kirmagansiz</strong></td>
                     </tr>
                 @endif
 

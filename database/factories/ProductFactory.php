@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class ProductFactory extends Factory
 {
@@ -14,7 +15,7 @@ class ProductFactory extends Factory
     public function definition()
     {
         $name = $this->faker->unique()->words($nb = 4, $asText = true);
-        $slug = \Str::slug($name);
+        $slug = Str::slug($name);
         $description = $this->faker->unique()->words($nb = 80, $asText = true);
         $short_description = $this->faker->unique()->words($nb=10, $asText = true);
         $price = $this->faker->numberBetween(10, 1000);

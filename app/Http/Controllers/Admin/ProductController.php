@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -43,7 +44,7 @@ class ProductController extends Controller
         if($request->category_name){
             $category = Category::create([
                 'name' => $request->category_name,
-                'slug' => \Str::slug($request->name)
+                'slug' => Str::slug($request->name)
             ]);
         }
 
@@ -67,7 +68,7 @@ class ProductController extends Controller
 
         Product::create([
             'name' => $request->name,
-            'slug' => \Str::slug($request->name),
+            'slug' => Str::slug($request->name),
             'price' => $request->price,
             'category_id' => $category ? $category->id : $request->category_id,
             'quantity' => $request->quantity,
@@ -134,7 +135,7 @@ class ProductController extends Controller
 
         $data = [
             'name' => $request->name,
-            'slug' => \Str::slug($request->name),
+            'slug' => Str::slug($request->name),
             'price' => $request->price,
             'category_id' => $category ? $category->id : $request->category_id,
             'quantity' => $request->quantity,

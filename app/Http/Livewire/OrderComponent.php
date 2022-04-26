@@ -9,7 +9,11 @@ class OrderComponent extends Component
 {
     public function render()
     {
-        $order = Order::get();
+        $order = null;  
+        if(auth()->check()){
+            $order = Order::where('user_id', auth()->id())->get();
+
+        }
         return view('livewire.order-component', ['order' => $order])->layout('layouts.layout');
     }
 }

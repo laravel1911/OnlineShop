@@ -52,11 +52,9 @@
                                 <li><a href="{{route('login')}}"><i class="fa fa-user"></i> Login</a></li>
                             @endif
                                     {{-- <li><a href="{{route('dashboard')}}"><i class="fa fa-user"></i>Profile</a></li> --}}
-                                    <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
+                                    <li><a href="{{route('wishlist')}}"><i class="fa fa-heart"></i> Wishlist</a></li>
                                     <li><a href="{{route('actioncart')}}"><i class="fa fa-user"></i> My Cart</a></li>
-                                    <li><a href="{{route('checkout')}}"><i class="fa fa-user"></i> Checkout</a></li>
                                     <li><a href="{{route('order')}}"><i class="fa fa-user"></i> Order</a></li>
-                                    <li><a href="{{route('order_details')}}"><i class="fa fa-user"></i> Order details</a></li>
 
                         </ul>
                     </div>
@@ -66,21 +64,7 @@
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
                             <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">USD </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">USD</a></li>
-                                    <li><a href="#">INR</a></li>
-                                    <li><a href="#">GBP</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown dropdown-small">
                                 <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
-                                {{-- <ul class="dropdown-menu">
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">French</a></li>
-                                    <li><a href="#">German</a></li>
-                                </ul> --}}
                                 <ul  class="dropdown-menu">
                                     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                         <li>
@@ -128,9 +112,6 @@
                         <li class="active"><a href="{{route('home')}}">{{ __('main.home') }}</a></li>
                         <li><a href="{{route('shop')}}">{{ __('main.shop') }}</a></li>
                         <li><a href="{{route('cart')}}">{{ __('main.cart') }}</a></li>
-                        <li><a href="{{route('checkout')}}">{{ __('main.checkout') }}</a></li>
-                        {{-- <li><a href="#">Category</a></li>
-                        <li><a href="#">Others</a></li> --}}
                         <li><a href="#">{{ __('main.contact') }}</a></li>
                     </ul>
                 </div>

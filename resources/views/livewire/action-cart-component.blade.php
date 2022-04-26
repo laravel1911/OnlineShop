@@ -42,12 +42,8 @@
                     <span class="amount">${{$item->price}}</span>
                 </td>
             </tr>
+
             @endforeach
-            @else
-                <tr>
-                    <td colspan="6">Korzinkada mahsulot yo'q</td>
-                </tr>
-            @endif
             <tr>
                 <td class="actions" colspan="6">
                     <a href="{{route('checkout')}}" class="btn btn-primary">
@@ -55,6 +51,12 @@
                     </a>
                 </td>
             </tr>
+            @else
+                <tr>
+                    <td colspan="6"><strong style="color: red">Korzinkada mahsulot yo'q yoki tizimga kirmagansiz</strong></td>
+                </tr>
+            @endif
+
         </tbody>
     </table>
 
