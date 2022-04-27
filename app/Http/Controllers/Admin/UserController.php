@@ -77,22 +77,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request -> validate([
+        $params = $request -> validate([
             'name' => 'required',
             'login' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'email' => 'required',
+            'password' => 'required',
+            'confirm_password' => 'required|same:password'
         ]);
 
-        $users = User::where('id', '=', $id )->first();
-        $users->name = $request->name;
-        $users->login = $request->login;
-        $users->email = $request->email;
-        $users->phone = $request->phone;
-        $users->image = $request->image;
-        //dd($request);
-        $users->save();
+        $user = User::where('id', '=', $id )->first();
+        $user->update($params);
 
         return redirect()->route('admin.users');
     }
@@ -105,7 +100,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+//        dd($id);
         $users = User::where('id', '=', $id )->first();
         $users -> delete();
     }

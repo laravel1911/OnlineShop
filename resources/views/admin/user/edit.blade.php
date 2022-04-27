@@ -78,14 +78,14 @@
                                     <!--First column-->
                                     <div class="col-md-6">
                                         <div class="md-form mb-0">
-                                            <input type="text" id="form81" class="form-control validate" value="{{ $users->phone }}">
+                                            <input type="text" name="phone" id="form81" class="form-control validate" value="{{ $users->phone }}">
                                             <label for="form81" data-error="wrong" data-success="right">Phone</label>
                                         </div>
                                     </div>
                                     <!--Second column-->
                                     <div class="col-md-6">
                                         <div class="md-form mb-0">
-                                            <input type="text" id="form82" class="form-control validate" value="{{ $users->login }}">
+                                            <input type="text" name="login" id="form82" class="form-control validate" value="{{ $users->login }}">
                                             <label for="form82" data-error="wrong" data-success="right">Login</label>
                                         </div>
                                     </div>
@@ -96,15 +96,23 @@
                                     <!--First column-->
                                     <div class="col-md-6">
                                         <div class="md-form mb-0">
-                                            <input type="email" id="form76" class="form-control validate" value="{{ $users->email }}">
+                                            <input type="email" name="email" id="form76" class="form-control validate" value="{{ $users->email }}">
                                             <label for="form76">Email address</label>
                                         </div>
                                     </div>
                                     <!--Second column-->
                                     <div class="col-md-6">
                                         <div class="md-form mb-0">
-                                            <input type="text" id="form77" class="form-control validate" value="{{ $users->password }}">
+                                            <input type="text" id="form77" class="form-control validate" name="password" value="">
                                             <label for="form77" data-error="wrong" data-success="right">Password</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="md-form mb-0">
+                                            <input type="text" id="form77" name="confirm_password" class="form-control validate" value="">
+                                            <label for="form77" data-error="wrong" data-success="right">Confirm Password</label>
+                                            <span>{{$errors->first('confirm_password')}}</span>
                                         </div>
                                     </div>
                                 </div>
