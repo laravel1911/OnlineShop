@@ -1,8 +1,9 @@
 @extends('layouts.admin-layout')
 @section('content')
   <main>
-    <form action="{{route('admin.product.update', ['product' => $product->slug])}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('admin.product.update', ['slug' => $product->slug])}}" method="POST" enctype="multipart/form-data">
       @csrf
+      @method('PUT')
 
       <div class="container-fluid">
 
@@ -54,7 +55,8 @@
               <div class="col-md-4 mb-4">
 
                 <div class="md-form">
-                  <input placeholder="Price" type="text" value="{{$product->price}}" class="form-control">
+                    <span style="color: red">{{$errors->first('price')}}</span>
+                  <input placeholder="Price" name="price" type="text" value="{{$product->price}}" class="form-control">
                   <label for="form3" class="active">Price</label>
                 </div>
 
@@ -67,7 +69,8 @@
               <div class="col-md-6 mb-4">
 
                 <div class="md-form">
-                  <input  value="{{$product->quantity}}" type="number" class="form-control">
+                    <span style="color: red">{{$errors->first('quantity')}}</span>
+                  <input name="quantity"  value="{{$product->quantity}}" type="number" class="form-control">
                   <label class="active" >Quantity</label>
                 </div>
 
@@ -76,7 +79,8 @@
               <div class="col-md-6 mb-4">
 
                 <div class="md-form">
-                  <input type="text" value="{{$product->status}}"  placeholder="Status" class="form-control" >
+                    <span style="color: red">{{$errors->first('status')}}</span>
+                  <input type="text" name="status" value="{{$product->status}}"  placeholder="Status" class="form-control" >
                   <label for="form5" class="disabled">Status</label>
                 </div>
 
@@ -90,7 +94,8 @@
               <div class="col-md-6 mb-4">
 
                 <div class="md-form">
-                  <textarea type="text"  name="text1" class="md-textarea form-control" rows="3">{{$product->description}}</textarea>
+                    <span style="color: red">{{$errors->first('description')}}</span>
+                  <textarea type="text"  name="description" class="md-textarea form-control" rows="3">{{$product->description}}</textarea>
                   <label for="form10">Description</label>
                 </div>
 
@@ -99,7 +104,8 @@
 
                 <div class="md-form">
                   <i class="fas fa-pencil-alt prefix"></i>
-                  <textarea type="text"  class="md-textarea form-control" name="text2" rows="3">{{$product->short_description}}</textarea>
+                  <span style="color: red">{{$errors->first('short_description')}}</span>
+                  <textarea type="text"  class="md-textarea form-control" name="short_description" rows="3">{{$product->short_description}}</textarea>
                   <label for="form11">Short description</label>
                 </div>
 
@@ -117,6 +123,7 @@
                     <div class="file-field">
                       <div class="btn btn-primary btn-sm float-left">
                         <span>Choose file</span>
+                        <span style="color: red">{{$errors->first('image')}}</span>
                         <input type="file" name="image" value="" id="">
                     </div>
                         @if ($product->image)
@@ -135,6 +142,7 @@
                     <div class="file-field">
                       <div class="btn btn-primary btn-sm float-left">
                         <span>Choose files</span>
+                        <span style="color: red">{{$errors->first('images')}}</span>
                         <input type="file" name="images" value="" multiple>
                       </div>
                       @if ($product->image)

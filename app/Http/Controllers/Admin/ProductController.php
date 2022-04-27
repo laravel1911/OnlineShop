@@ -94,12 +94,15 @@ class ProductController extends Controller
         $categories = Category::get();
 
         $product = Product::where('slug', $slug)->first();
-        // dd($product->image);
+        // dd($product);
+        // dd($categories);
         return view('admin.product.edit', ['product' => $product, 'categories' => $categories]);
     }
 
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $slug)
     {
+        $product = Product::where('slug', $slug)->first();
+        
         $params = $request->validate([
             'name' => 'required',
             'price' => 'required',
@@ -145,6 +148,8 @@ class ProductController extends Controller
             'image' => $image??'',
             'images' => $images??'',
         ];
+
+        $product->update($data);
     }
 
     public function destroy($id)
