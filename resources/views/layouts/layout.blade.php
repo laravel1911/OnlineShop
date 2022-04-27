@@ -56,17 +56,6 @@
                                     <li><a href="{{route('actioncart')}}"><i class="fa fa-user"></i> My Cart</a></li>
                                     <li><a href="{{route('checkout')}}"><i class="fa fa-user"></i> Checkout</a></li>
                                     <li><a href="{{route('order')}}"><i class="fa fa-user"></i> Order</a></li>
-                                    <li><a href="{{route('order_details')}}"><i class="fa fa-user"></i> Order details</a></li>
-
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="header-right">
-                        <ul class="list-unstyled list-inline">
-                            <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">USD </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">USD</a></li>
                                     <li><a href="#">INR</a></li>
