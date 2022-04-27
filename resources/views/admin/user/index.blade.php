@@ -56,12 +56,14 @@
                                 <td>{{ $values->email }}</td>
                                 <td>{{ $values->login }}</td>
                                 <td>
-                                    @csrf
-                                    @method('delete')
                                     <a class="blue-text" data-toggle="tooltip" data-placement="top" title="See results"><i
                                         class="fas fa-user"></i></a>
                                         <a href="{{ route('admin.edit', ['id' => $values->id]) }}" class="teal-text" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="{{ route('admin.delete', ['id' => $values->id]) }}" class="red-text" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fas fa-times"></i></a>
+                                        <form action="{{ route('admin.delete', ['id' => $values->id]) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="submit" class="btn btn-danger" value="delete">
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

@@ -83,6 +83,11 @@ Route::group(['prefix' => 'admin'], function (){
     Route::delete('/users/delete/{id}', [AdminUserController::class, 'destroy'])->name('admin.delete');
 
     Route::get('/category', [AdminCategoryController::class, 'index'])->name('category');
+    Route::get('/category/create', [AdminCategoryController::class, 'create'])->name('admin.category.create');
+    Route::get('/category/store', [AdminCategoryController::class, 'store'])->name('admin.category.store');
     Route::get('/category/show/{id}', [AdminCategoryController::class, 'show'])->name('admin.category.show');
+    Route::get('/category/edit/{id}', [AdminCategoryController::class, 'edit'])->name('admin.category.edit');
+    Route::put('/category/update/{id}', [AdminCategoryController::class, 'update'])->name('admin.category.update');
+    Route::get('/category/delete/{id}', [AdminCategoryController::class, 'destroy'])->name('admin.category.delete');
 
 });

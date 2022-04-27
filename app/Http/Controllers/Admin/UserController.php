@@ -91,7 +91,7 @@ class UserController extends Controller
         $users->email = $request->email;
         $users->phone = $request->phone;
         $users->image = $request->image;
-        dd($request);
+        //dd($request);
         $users->save();
 
         return redirect()->route('admin.users');
@@ -105,6 +105,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        dd($id);
         $users = User::where('id', '=', $id )->first();
         $users -> delete();
     }
