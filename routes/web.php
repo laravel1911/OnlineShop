@@ -84,7 +84,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
         Route::post('/store', [AdminProductController::class, 'store'])->name('admin.product.store');
         Route::get('/show/{slug}', [AdminProductController::class, 'show'])->name('admin.product.show');
         Route::get('/edit/{slug}', [AdminProductController::class, 'edit'])->name('admin.product.edit');
-        Route::put('/update/{product}', [AdminProductController::class, 'update'])->name('admin.product.update');
+        Route::put('/update/{slug}', [AdminProductController::class, 'update'])->name('admin.product.update');
         Route::get('/users/show/{id}', [AdminUserController::class, 'show'])->name('admin.show');
         Route::get('/users/edit/{id}', [AdminUserController::class, 'edit'])->name('admin.edit');
         Route::put('/users/update/{id}', [AdminUserController::class, 'update'])->name('admin.update');

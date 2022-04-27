@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -43,7 +44,7 @@ class ProductController extends Controller
         if($request->category_name){
             $category = Category::create([
                 'name' => $request->category_name,
-                'slug' => \Str::slug($request->name)
+                'slug' => Str::slug($request->name)
             ]);
         }
 
@@ -67,7 +68,7 @@ class ProductController extends Controller
 
         Product::create([
             'name' => $request->name,
-            'slug' => \Str::slug($request->name),
+            'slug' => Str::slug($request->name),
             'price' => $request->price,
             'category_id' => $category ? $category->id : $request->category_id,
             'quantity' => $request->quantity,
@@ -93,12 +94,15 @@ class ProductController extends Controller
         $categories = Category::get();
 
         $product = Product::where('slug', $slug)->first();
-        // dd($product->image);
+        // dd($product);
+        // dd($categories);
         return view('admin.product.edit', ['product' => $product, 'categories' => $categories]);
     }
 
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $slug)
     {
+        $product = Product::where('slug', $slug)->first();
+        
         $params = $request->validate([
             'name' => 'required',
             'price' => 'required',
@@ -134,7 +138,7 @@ class ProductController extends Controller
 
         $data = [
             'name' => $request->name,
-            'slug' => \Str::slug($request->name),
+            'slug' => Str::slug($request->name),
             'price' => $request->price,
             'category_id' => $category ? $category->id : $request->category_id,
             'quantity' => $request->quantity,
@@ -144,6 +148,8 @@ class ProductController extends Controller
             'image' => $image??'',
             'images' => $images??'',
         ];
+
+        $product->update($data);
     }
 
     public function destroy($id)
