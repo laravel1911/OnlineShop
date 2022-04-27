@@ -9,11 +9,12 @@
       <div class="col-md-8">
         <div class="row mb-1">
           <div class="col-md-9">
-            <h4 class="h4-responsive mt-1">Your Clients</h4>
+            <h4 class="h4-responsive mt-1">Your Category</h4>
           </div>
           <div class="col-md-3">
             <div class="md-form">
               <input placeholder="Search..." type="text" id="form5" class="form-control">
+              <a href="{{route('admin.category.create')}}" class="btn btn-primary">Create</a>
             </div>
           </div>
         </div>
@@ -25,11 +26,7 @@
               <div class="tabs-wrapper">
                 <ul class="nav tabs-primary primary-color" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link waves-light active" data-toggle="tab" href="#panel83" role="tab">Personal
-                      Clients</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link waves-light" data-toggle="tab" href="#panel84" role="tab">Corporate Clients</a>
+                    <a class="nav-link waves-light active" data-toggle="tab" href="#panel83" role="tab">Category</a>
                   </li>
                 </ul>
               </div>
@@ -53,11 +50,9 @@
                                 <th scope="row">{{ $values->id }}</th>
                                 <td><a href="{{ route('admin.category.show', ['id' => $values->id]) }}">{{ $values->name }}</a></td>
                                 <td>
-                                    @csrf
-                                    @method('delete')
                                     <a class="blue-text" data-toggle="tooltip" data-placement="top" title="See results"><i
                                         class="fas fa-user"></i></a>
-                                        <a href="{{ route('admin.edit', ['id' => $values->id]) }}" class="teal-text" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="{{ route('admin.category.edit', ['id' => $values->id]) }}" class="teal-text" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                         <a href="{{ route('admin.delete', ['id' => $values->id]) }}" class="red-text" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fas fa-times"></i></a>
                                     </td>
                                 </tr>
@@ -75,14 +70,6 @@
         </div>
       </div>
       <!-- /.First column -->
-      <!-- Second column -->
-      <div class="col-md-4 mb-1">
-
-
-
-      </div>
-    </div>
-    <!-- /.Second column -->
 </div>
 <!-- /.First row -->
 

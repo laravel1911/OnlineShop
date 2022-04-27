@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -27,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     /**
@@ -38,7 +39,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category();
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect()->route('category');
     }
 
     /**
@@ -63,7 +68,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::where('id', '=', $id)->first();
+        return view('admin.category.edit', ['category' => $category]);
     }
 
     /**
@@ -75,7 +81,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::where('id', $id)->first();
+        $request ->validate([
+            'name' => 'required'
+        ]);
+        $data = [
+            'name' => $request->name,
+            'slug' => \Str::slug($request->name)
+        ];
+
+        $category->update($data);
+
+        return redirect()->route('category');
     }
 
     /**
