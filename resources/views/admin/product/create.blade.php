@@ -1,7 +1,7 @@
 @extends('layouts.admin-layout')
 @section('content')
   <main>
-    <form action="{{route('admin.product.create')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('admin.product.store')}}" method="POST" enctype="multipart/form-data">
       @csrf
 
       <div class="container-fluid">
@@ -47,7 +47,8 @@
               <div class="col-md-4 mb-4">
 
                 <div class="md-form">
-                  <input placeholder="Price" type="text"  class="form-control">
+                    <span style="color: red">{{$errors->first('price')}}</span>
+                  <input placeholder="Price" type="text"  name="price" class="form-control">
                   <label for="form3" class="active">Price</label>
                 </div>
 
@@ -60,7 +61,8 @@
               <div class="col-md-6 mb-4">
 
                 <div class="md-form">
-                  <input placeholder="Quantity" type="number" class="form-control">
+                    <span style="color: red">{{$errors->first('quantity')}}</span>
+                  <input placeholder="Quantity" name="quantity" type="number" class="form-control">
                   <label class="active" >Quantity</label>
                 </div>
 
@@ -69,7 +71,8 @@
               <div class="col-md-6 mb-4">
 
                 <div class="md-form">
-                  <input type="number" class="form-control" placeholder="status" >
+                    <span style="color: red">{{$errors->first('status')}}</span>
+                  <input type="number" class="form-control" name="status" placeholder="status" >
                   <label for="form5">Status</label>
                 </div>
 
@@ -83,7 +86,8 @@
               <div class="col-md-6 mb-4">
 
                 <div class="md-form">
-                  <textarea type="text" class="md-textarea form-control" rows="3"></textarea>
+                    <span style="color: red">{{$errors->first('description')}}</span>
+                  <textarea type="text" name="description" class="md-textarea form-control" rows="3"></textarea>
                   <label for="form10">Description</label>
                 </div>
 
@@ -92,7 +96,8 @@
 
                 <div class="md-form">
                   <i class="fas fa-pencil-alt prefix"></i>
-                  <textarea type="text" class="md-textarea form-control" rows="3"></textarea>
+                  <span style="color: red">{{$errors->first('short_description')}}</span>
+                  <textarea type="text" name="short_description" class="md-textarea form-control" rows="3"></textarea>
                   <label for="form11">Short description</label>
                 </div>
 
@@ -104,43 +109,28 @@
 
             <div class="row">
 
-              <div class="col-md-6 mb-4">
+                    <div class="form-group">
 
-                  <div class="md-form">
-                    <div class="file-field">
-                      <div class="btn btn-primary btn-sm float-left">
                         <span>Choose file</span>
-                        <input type="file" name="image">
-                      </div>
-                      <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" disabled placeholder="Upload your file">
-                      </div>
+                        <span style="color: red">{{$errors->first('image')}}</span>
+                        <input class="form-control" type="file" name="image">
+
                     </div>
-                  </div>
 
-              </div>
+                    <div class="form-group">
 
-              <div class="col-md-6 mb-4">
+                      <span>Choose files</span>
+                        <span style="color: red">{{$errors->first('images')}}</span>
+                        <input class="form-control" type="file" name="images" multiple>
 
-                  <div class="md-form">
-                    <div class="file-field">
-                      <div class="btn btn-primary btn-sm float-left">
-                        <span>Choose files</span>
-                        <input type="file" name="images" multiple>
-                      </div>
-                      <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" disabled placeholder="Upload one or more files">
-                      </div>
                     </div>
-                  </div>
-
-              </div>
 
             </div>
 
-
           </div>
+
           <input type="submit" value="Send" class="btn btn-success" style="display: block" width="100%">
+          
         </section>
 
       </div>

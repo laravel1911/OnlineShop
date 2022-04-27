@@ -50,8 +50,9 @@
             @endif
             <tr>
                 <td class="actions" colspan="6">
-
-                    <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
+                    <a href="{{route('checkout')}}" class="btn btn-primary">
+                        <strong>Checkout</strong>
+                    </a>
                 </td>
             </tr>
         </tbody>

@@ -140,14 +140,32 @@
                                                 </p>
 
                                             </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="profile">
+                                                <h2>Reviews</h2>
+                                                @if(sizeof($reviews) > 0)
+                                                    @foreach($reviews as $key=>$item)
+                                                        <div class="submit-review">
+                                                            <div class="rating-chooser" style="margin-bottom: 1px">
+                                                                <p> {{$item->user->name}}</p>
+                                                                <div class="rating-wrap-post">
+                                                                    @for($i=1; $i<=$item->rating; $i++)
+                                                                        <i class="fa fa-star"></i>
+                                                                    @endfor
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                {{$item->comment}}
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                    @endforeach
+                                                @else
+                                                    <div>
+                                                        Sharhlar mavjud emas
+                                                    </div>
+                                                @endif
 
-
-
-{{--                                            //reviews--}}
-
-
-
-
+                                            </div>
                                         </div>
                                     </div>
 

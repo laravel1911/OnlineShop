@@ -1,7 +1,7 @@
 @extends('layouts.admin-layout')
 @section('content')
   <main>
-    <form action="{{route('admin.product.create')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('admin.product.update', ['product' => $product->slug])}}" method="POST" enctype="multipart/form-data">
       @csrf
 
       <div class="container-fluid">
@@ -117,11 +117,13 @@
                     <div class="file-field">
                       <div class="btn btn-primary btn-sm float-left">
                         <span>Choose file</span>
-                        <input type="file" name="image">
-                      </div>
-                      <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" disabled placeholder="Upload your file">
-                      </div>
+                        <input type="file" name="image" value="" id="">
+                    </div>
+                        @if ($product->image)
+                            <br><img src="{{$product->image}}" width="100" alt="Bu yerda rasm bor">
+                        @endif
+
+
                     </div>
                   </div>
 
@@ -133,11 +135,11 @@
                     <div class="file-field">
                       <div class="btn btn-primary btn-sm float-left">
                         <span>Choose files</span>
-                        <input type="file" name="images" multiple>
+                        <input type="file" name="images" value="" multiple>
                       </div>
-                      <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" disabled placeholder="Upload one or more files">
-                      </div>
+                      @if ($product->image)
+                        <br><img src="{{$product->images}}" width="100"  alt="Bu yerda rasm bor">
+                      @endif
                     </div>
                   </div>
 
@@ -150,7 +152,7 @@
           {{-- <input type="submit" value="Save" class="btn btn-success" style="display: block !important" width="100%"> --}}
           <div style="display: flex">
             <button type="submit" class="btn btn-success">Save</button>
-            <a href="{{route('admin.product.show', ['product' => $product->id])}}" class="btn btn-light" width="25%">Back</a>
+            <a href="{{route('admin.product.show', ['slug' => $product->slug])}}" class="btn btn-light" width="25%">Back</a>
             <a href="{{route('admin.product.index')}}" class="btn btn-primary">&#926 Product list</a>
           </div>
         </section>

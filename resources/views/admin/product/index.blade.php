@@ -4,12 +4,12 @@
 <main>
     <div class="container-fluid mb-5">
 
+        <a href="{{route('admin.product.create')}}" style="width: 25%" class="btn btn-success"><strong>➕Create</strong></a>
       <!--Section: Basic examples-->
       <section>
+          <div class="row" >
 
-        <div class="row" >
-
-          <div class="col-md-12">
+              <div class="col-md-12">
 
             <div class="card">
               <div class="card-body">
@@ -35,11 +35,11 @@
                         @foreach ($product as $item)
                             <tr>
                                 <td>{{$item->id}}</td>
-                                <td><a href="{{route('admin.product.show', ['product' => $item->id])}}">{{$item->name}}</a></td>
-                                <td><a href="{{route('admin.product.show', ['product' => $item->id])}}">${{$item->price}}</a></td>
-                                <td><a href="{{route('admin.product.show', ['product' => $item->id])}}">{{$item->category->name}}</a></td>
-                                <td><a href="{{route('admin.product.show', ['product' => $item->id])}}">{{$item->quantity}}</a></td>
-                                <td><a href="{{route('admin.product.show', ['product' => $item->id])}}"><img src="{{asset($item->image)}}" width="100" alt="Bu yerda rasm bor"></a></td>
+                                <td><a href="{{route('admin.product.show', ['slug' => $item->slug])}}">{{$item->name}}</a></td>
+                                <td><a href="{{route('admin.product.show', ['slug' => $item->slug])}}">${{$item->price}}</a></td>
+                                <td><a href="{{route('admin.product.show', ['slug' => $item->slug])}}">{{$item->category->name}}</a></td>
+                                <td><a href="{{route('admin.product.show', ['slug' => $item->slug])}}">{{$item->quantity}}</a></td>
+                                <td><a href="{{route('admin.product.show', ['slug' => $item->slug])}}"><img src="{{asset($item->image)}}" width="100" alt="Bu yerda rasm bor"></a></td>
                             </tr>
 
                         @endforeach

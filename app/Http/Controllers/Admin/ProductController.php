@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -25,12 +26,80 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        $params = $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
+            'quantity' => 'required',
+            'description' => 'required',
+            'short_description' => 'required',
+            'status' => 'required',
+            'image' => 'required',
+            'images' => 'required'
+        ]);
+        // dd($params);
+
         $category = null;
         if($request->category_name){
-            $category = Category::create(['name' => $request->category_name]);
+            $category = Category::create([
+                'name' => $request->category_name,
+                'slug' => \Str::slug($request->name)
+            ]);
         }
 
-        $request->validate([
+        $image_name = time() . '.' . $request->file('image')->getClientOriginalExtension();
+        $request->file('image')->storeAs('/public/images', $image_name);
+        $images = null;
+        if(isset($request->images)){
+            if($request->hasFile('images'))
+            {
+                $image_names = [];
+                foreach($request->file('images') as $key => $item){
+                    $file_names = time() . '_' . $key . '.' . $item->getClientOrginalExtension();
+                    $item->storeAs('/public/images/', $file_names);
+                    $image_names[] = $file_names;
+                }
+                $images = implode(',', $image_names);
+            }
+        }
+
+
+
+        Product::create([
+            'name' => $request->name,
+            'slug' => \Str::slug($request->name),
+            'price' => $request->price,
+            'category_id' => $category ? $category->id : $request->category_id,
+            'quantity' => $request->quantity,
+            'description' => $request->description,
+            'short_description' => $request->short_description,
+            'status' => $request->status,
+            'image' => $image_name,
+            'images' => $images,
+        ]);
+
+        return redirect()->route('admin.product.index');
+    }
+
+    public function show($slug)
+    {
+        $product = Product::where('slug', $slug)->first();
+        // dd($product);
+
+        return view('admin.product.show', ['product' => $product]);
+    }
+    public function edit($slug)
+    {
+        $categories = Category::get();
+
+        $product = Product::where('slug', $slug)->first();
+        // dd($product->image);
+        return view('admin.product.edit', ['product' => $product, 'categories' => $categories]);
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $params = $request->validate([
             'name' => 'required',
             'price' => 'required',
             'category_id' => 'required',
@@ -42,38 +111,48 @@ class ProductController extends Controller
             'images' => 'required'
         ]);
 
-        Product::create([
+        $image = null;
+        if($product->image){
+
+            if($request->file('image')){
+                $image = time() . '.' . $request->file('image')->getClientOriginalExtension();
+                $request->file('image')->storeAs('/public/images/', $image);
+
+                unlink('storage/images/' . $product->image);
+            }
+        }else{
+            $image = time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->storeAs('/public/images', $image);
+        }
+
+        $category = null;
+        if($request->category_id){
+            $category = Category::create([
+                'name' => $request->category_id
+            ]);
+        }
+
+        $data = [
             'name' => $request->name,
+            'slug' => \Str::slug($request->name),
             'price' => $request->price,
             'category_id' => $category ? $category->id : $request->category_id,
             'quantity' => $request->quantity,
             'description' => $request->description,
             'short_description' => $request->short_description,
             'status' => $request->status,
-            'image' => $request->image,
-            'images' => $request->images,
-        ]);
-
-        return redirect()->route('admin.product.index');
+            'image' => $image??'',
+            'images' => $images??'',
+        ];
     }
 
-    public function show(Product $product)
+    public function destroy($id)
     {
-        // dd($product
-        return view('admin.product.show', ['product' => $product]);
-    }
-    public function edit($id)
-    {
-        $categories = Category::get();
-
         $product = Product::where('id', '=', $id)->first();
 
-        return view('admin.product.edit', ['product' => $product, 'categories' => $categories]);
-    }
+        $product->delete();
 
-    public function update(Request $request, Product $product)
-    {
-        
+        return redirect()->route('admin.product.index');
     }
 }
 

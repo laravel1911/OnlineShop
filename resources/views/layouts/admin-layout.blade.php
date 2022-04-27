@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Material Design Bootstrap</title>
+  <title>Ustora Demo Admin</title>
+  <link rel="icon" href="{{asset('assets/img/logo.png')}}">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -52,104 +53,7 @@
         <!--/.Search Form-->
         <!-- Side navigation links -->
         <li>
-          <ul class="collapsible collapsible-accordion">
-            <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-tachometer-alt"></i>
-                Dashboards<i class="fas fa-angle-down rotate-icon"></i></a>
-              <div class="collapsible-body">
-                <ul>
-                  <li><a href="../dashboards/v-1.html" class="waves-effect">Version 1</a>
-                  </li>
-                  <li><a href="../dashboards/v-2.html" class="waves-effect">Version 2</a>
-                  </li>
-                  <li><a href="../dashboards/v-3.html" class="waves-effect">Version 3</a>
-                  </li>
-                  <li><a href="../dashboards/v-4.html" class="waves-effect">Version 4</a>
-                  </li>
-                  <li><a href="../dashboards/v-5.html" class="waves-effect">Version 5</a>
-                  </li>
-                  <li><a href="../dashboards/v-6.html" class="waves-effect">Version 6</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-image"></i> Pages<i class="fas fa-angle-down rotate-icon"></i></a>
-              <div class="collapsible-body">
-                <ul>
-                  <li><a href="../pages/login.html" class="waves-effect">Login</a>
-                  </li>
-                  <li><a href="../pages/register.html" class="waves-effect">Register</a>
-                  </li>
-                  <li><a href="../pages/pricing.html" class="waves-effect">Pricing</a>
-                  </li>
-                  <li><a href="../pages/about.html" class="waves-effect">About us</a>
-                  </li>
-                  <li><a href="../pages/single.html" class="waves-effect">Single post</a>
-                  </li>
-                  <li><a href="../pages/post.html" class="waves-effect">Post listing</a>
-                  </li>
-                  <li><a href="../pages/landing.html" class="waves-effect">Landing page</a>
-                  </li>
-                  <li><a href="../pages/customers.html" class="waves-effect">Customers</a>
-                  </li>
-                  <li><a href="../pages/invoice.html" class="waves-effect">Invoice</a>
-                  </li>
-                  <li><a href="../pages/page-creator.html" class="waves-effect">Page Creator</a>
-                  </li>
-                  <li><a href="../pages/support.html" class="waves-effect">Support</a>
-                  </li>
-                  <li><a href="../pages/chat.html" class="waves-effect">Chat</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-user"></i> Profile<i class="fas fa-angle-down rotate-icon"></i></a>
-              <div class="collapsible-body">
-                <ul>
-                  <li><a href="../profile/basic-1.html" class="waves-effect">Basic 1</a>
-                  </li>
-                  <li><a href="../profile/basic-2.html" class="waves-effect">Basic 2</a>
-                  </li>
-                  <li><a href="../profile/extended.html" class="waves-effect">Extended</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li><a class="collapsible-header waves-effect arrow-r"><i class="fab fa-css3"></i> CSS<i class="fas fa-angle-down rotate-icon"></i></a>
-              <div class="collapsible-body">
-                <ul>
-                  <li><a href="../css/grid.html" class="waves-effect">Grid system</a>
-                  </li>
-                  <li><a href="../css/media.html" class="waves-effect">Media object</a>
-                  </li>
-                  <li><a href="../css/utilities.html" class="waves-effect">Utilities / helpers</a>
-                  </li>
-                  <li><a href="../css/code.html" class="waves-effect">Code</a>
-                  </li>
-                  <li><a href="../css/icons.html" class="waves-effect">Icons</a>
-                  </li>
-                  <li><a href="../css/images.html" class="waves-effect">Images</a>
-                  </li>
-                  <li><a href="../css/typography.html" class="waves-effect">Typography</a>
-                  </li>
-                  <li><a href="../css/animations.html" class="waves-effect">Animations</a>
-                  </li>
-                  <li><a href="../css/colors.html" class="waves-effect">Colors</a>
-                  </li>
-                  <li><a href="../css/hover.html" class="waves-effect">Hover effects</a>
-                  </li>
-                  <li><a href="../css/masks.html" class="waves-effect">Masks</a>
-                  </li>
-                  <li><a href="../css/shadows.html" class="waves-effect">Shadows</a>
-                  </li>
-                  <li><a href="../css/skins.html" class="waves-effect">Skins</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-
-
-
-          </ul>
+          <a href="{{route('admin.product.index')}}"><strong>Product list</strong></a>
         </li>
         <!--/. Side navigation links -->
       </ul>

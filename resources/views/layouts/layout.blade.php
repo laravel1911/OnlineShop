@@ -29,22 +29,41 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
+                            @if (auth()->check())
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle waves-effect" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                  <i class="fa fa-user"></i> <span class="clearfix d-none d-sm-inline-block">Profile</span></a>
+                                    <i class="fa fa-user"></i> <span class="clearfix d-none d-sm-inline-block">Profile</span></a>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                        <a class="dropdown-item waves-effect waves-light" href="{{route('dashboard')}}">My account</a>
+                                        {{-- <a class="dropdown-item waves-effect waves-light" href="{{route('login')}}">Log Out</a> --}}
+                                        <form action="{{route('logout')}}" method="post">
+                                            @csrf
+
+                                            <a href="" class="dropdown-item waves-effect waves-light" onclick="event.preventDefault(); this.closest('form').submit();">
+                                                Log out
+                                            </a>
+                                        </form>
+                                    </div>
+                                </li>
+
+                            @else
+                                <li><a href="{{route('login')}}"><i class="fa fa-user"></i> Login</a></li>
+                            @endif
+                                    {{-- <li><a href="{{route('dashboard')}}"><i class="fa fa-user"></i>Profile</a></li> --}}
+                                    <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
+                                    <li><a href="{{route('actioncart')}}"><i class="fa fa-user"></i> My Cart</a></li>
+                                    <li><a href="{{route('checkout')}}"><i class="fa fa-user"></i> Checkout</a></li>
+                                    <li><a href="{{route('order')}}"><i class="fa fa-user"></i> Order</a></li>
+                                    
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                   <a class="dropdown-item waves-effect waves-light" href="{{route('dashboard')}}">My account</a>
                                   <a class="dropdown-item waves-effect waves-light" href="{{route('login')}}">Log Out</a>
                                 </div>
                               </li>
-                            {{-- <li><a href="{{route('dashboard')}}"><i class="fa fa-user"></i>Profile</a></li> --}}
-                            <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                            <li><a href="{{route('actioncart')}}"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="{{route('checkout')}}"><i class="fa fa-user"></i> Checkout</a></li>
-                            <li><a href="{{route('login')}}"><i class="fa fa-user"></i> Login</a></li>
-                            <li><a href="{{route('order')}}"><i class="fa fa-user"></i> Order</a></li>
-                            
+
                         </ul>
                     </div>
                 </div>
